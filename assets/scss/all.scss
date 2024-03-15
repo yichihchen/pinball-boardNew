@@ -2,6 +2,9 @@
 @import './utils/variables';
 
 
+@import './utils/base.scss';
+@import './utils/mixin.scss';
+
 @import './layout/header.scss';
 @import './layout/footer.scss';
 

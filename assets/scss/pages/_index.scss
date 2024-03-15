@@ -1,3 +1,621 @@
-.index-title {
-  font-size: 100px;
+.container-fluid{
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+#scroller {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  margin : 0;
+  padding : 0;
+  height: 100vh;
+  width: 100vw;
+  /*border: 5px dashed orange;*/
+  
+}
+
+#drag {
+  background-color: pink;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: auto;
+}
+
+.board {
+
+  width: 100vw;
+  min-height: calc(100vw * 1.3); //100:130為背景圖的比例
+
+  background-image: url(/assets/images/彈珠檯-反光修正.png);
+
+  @include picture() {
+    background-size: 100% 100%; //背景的寬度為100% 原因是視窗依照其寬度做縮放，高度是隨著寬度而改變
+    background-position: center 0%; //背景的基準點為，父層容器x軸的中央(背景圖x軸置中，y軸從背景的頂部開始)
+
+  }
+
+}
+
+#board {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: auto;
+}
+
+//上方藍色閃光
+.bluelight {
+  width: 200px;
+  height: 10px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 2%;
+  left: 50%;
+  border-radius: 50%;
+  background-color: rgba(33, 110, 255, 0.9);
+  box-shadow: 0 0 10px #247bff, 0 0 20px #247bff, 0 0 20px #247bff inset;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+
+
+
+.pointLight-container {
+
+  position: absolute; //推到board中間
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+}
+
+.pointLight {
+  width: 5vw;
+  height: 5vw;
+  font-size: 1.6vw; //分數字體大小
+  background: radial-gradient(circle, darken(rgba(255, 223, 97), 40%), darken(rgba(255, 122, 45), 90%)); //背景
+
+}
+
+.pointLight-wrap1 {
+  padding-left: 0px !important;
+
+  //微調每一欄的位置
+  position: relative;
+  transform: translate(-50%, -50%);
+  top: 28vw;
+  left: -12vw;
+
+  li {
+    margin-bottom: 0.3vw !important;
+  }
+}
+
+
+.pointLight-wrap2 {
+  padding-left: 0px !important;
+  //微調每一欄的位置
+  position: relative;
+  transform: translate(-50%, -50%);
+  top: 28vw;
+  left: -6vw;
+
+  li {
+    margin-bottom: 0.3vw !important;
+  }
+
+}
+
+.pointLight-wrap3 {
+  padding-left: 0px !important;
+  //微調位置
+  position: relative;
+  transform: translate(-50%, -50%);
+  top: 28.2vw;
+  left: 5.6vw;
+
+  li {
+    margin-bottom: 0.3vw !important;
+  }
+}
+
+.pointLight-wrap4 {
+  padding-left: 0px !important;
+  //微調位置
+  position: relative;
+  transform: translate(-50%, -50%);
+  top: 28.6vw;
+  left: 11.5vw;
+
+  li {
+    margin-bottom: 0.3vw !important;
+  }
+
+}
+
+//數來數去的位置
+//球的外觀
+.mouseLight {
+  width: 6vw; //RWD
+  height: 6vw;
+  background-color: rgb(70, 255, 246);
+  font-size: 4vw;
+
+}
+
+
+.mouseLight-wrap {
+  position: absolute; //推到board中間
+  //萬用置中(寬度)才不會隨便跑
+  transform: translate(-50%, -50%);
+  top: 42%;
+  left: 50%;
+
+}
+
+
+.mouseLight1 {
+  position: relative;
+  transform: translate(-50%, -50%);
+  top: 3.5vw;
+  left: -3.4vw;
+
+}
+
+.mouseLight2 {
+  position: relative;
+  transform: translate(-50%, -50%);
+  top: 0.4vw;
+  left: 0.7vw;
+
+}
+
+.mouseLight3 {
+  position: relative;
+  transform: translate(-50%, -50%);
+  top: 0.5vw;
+  left: 5.4vw;
+}
+
+.mouseLight4 {
+  position: relative;
+  transform: translate(-50%, -50%);
+  top: 4vw;
+  left: 10vw;
+}
+
+.pointLight-out1 {
+  background: radial-gradient(circle, #ffdf61, #ff7a2d);
+}
+
+.pointLight-out2 {
+  background-color: #ff7a2d;
+}
+
+
+.pointLight-in {
+  background-color: #ff7a2d;
+}
+
+
+
+//mouseFlash閃爍
+$mouse-opacitys: (
+  mouseFlash:100%,
+  //100%完全不透明
+);
+
+@each $name, $opacity in $mouse-opacitys {
+  .#{$name} {
+
+    // 這裡不要加背景顏色，以免擋到閃爍效果
+    @keyframes #{$name}-flash {
+      40% {
+        background-color: darken(rgba(70, 255, 246, 0.788), $opacity);
+      }
+
+      60% {
+        background-color: (rgb(255, 251, 39, $opacity));
+      }
+
+      80% {
+        background-color: darken(rgba(255, 251, 39, 0.747), $opacity);
+      }
+
+
+    }
+
+    animation: 1.5s #{$name}-flash infinite;
+  }
+}
+
+
+
+
+//pointLight 第一組閃爍
+//另外不可用fill，fill是用在SVG上的
+$opacitys: (
+  pointLight-out1:100%,
+  //100%完全不透明
+  // pointLight-out1-opacity:0,
+);
+
+@each $name, $opacity in $opacitys {
+  .#{$name} {
+
+    // 這裡不要加背景顏色，以免擋到閃爍效果
+    @keyframes #{$name}-flash {
+
+      50% {
+        background: radial-gradient(circle, darken(rgba(255, 223, 97, $opacity), 40%), darken(rgba(255, 122, 45, $opacity), 90%)); // darken(#ff7a2dce, $opacity)
+      }
+    }
+
+    animation: 1s #{$name}-flash 10;
+
+  }
+
+}
+
+//控制閃爍延遲
+$timings: (
+  timing-0: 0s,
+  timing-15: .15s,
+);
+
+@each $timing-name, $timing in $timings {
+  .#{$timing-name} {
+    animation-delay: $timing;
+  }
+}
+
+
+//pointLight-out2第二組閃爍
+$opacitys: (
+  pointLight-out2:100%,
+  //100%完全不透明
+  // pointLight-in:100%
+);
+
+@each $name, $opacity in $opacitys {
+  .#{$name} {
+
+    @keyframes #{$name}-flash-2 {
+      40% {
+        background: radial-gradient(circle, darken(rgba(255, 223, 97, $opacity), 40%), darken(rgba(255, 122, 45, $opacity), 90%)); // background-color: darken(#ff7a2da9, $opacity); //rgba(255, 122, 45, $opacity);
+      }
+
+      80% {
+        background: radial-gradient(circle, darken(rgba(255, 223, 97, $opacity), 40%), darken(rgba(255, 122, 45, $opacity), 90%)); // background-color: darken(#ff7a2da9, $opacity); //rgba(255, 122, 45, $opacity);
+      }
+    }
+
+    // 使用第二組 keyframes，動畫執行 40 次才停止
+    animation: 1s #{$name}-flash-2 infinite;
+  }
+
+}
+
+//控制閃爍延遲
+$timings: (
+  timing-0: 0s,
+  timing-15: .15s,
+);
+
+@each $timing-name, $timing in $timings {
+  .#{$timing-name} {
+    animation-delay: $timing;
+  }
+}
+
+
+.firstGetpoint {
+
+  background: radial-gradient(circle, #ffdf61, #ff7a2d);
+}
+
+
+
+//第一次得分閃爍，閃6下就停止
+$opacitys: (
+  firstGetpoint:100%,
+  //100%完全不透明
+
+);
+
+@each $name, $opacity in $opacitys {
+  .#{$name} {
+
+    // 這裡不要加背景顏色，以免擋到閃爍效果
+    @keyframes #{$name}-flash {
+      40% {
+
+        background: radial-gradient(circle, darken(rgba(255, 223, 97, $opacity), 40%), darken(rgba(255, 122, 45, $opacity), 90%));
+
+      }
+
+    }
+
+    animation: .3s #{$name}-flash 6;
+  }
+}
+
+
+
+//得幾分亮起指定分數按鈕
+.highlight {
+
+  background: radial-gradient(circle, #ffdf61, #ff7a2d);
+}
+
+.nothighlight {
+  background-color: rgb(59, 59, 59);
+}
+
+//點擊開始燈號樣式,用timing比較好用
+//要改成: 依序全部亮，再依序全部暗
+.startlight {
+  background: radial-gradient(circle, #ffdf61, #ff7a2d);
+}
+
+$opacitys: (
+  startlight:100%,
+  //100%完全不透明
+
+);
+
+
+@each $name, $opacity in $opacitys {
+  .#{$name} {
+    @keyframes #{$name}-flash-3 {
+      50% {
+        background: radial-gradient(circle, darken(rgba(255, 223, 97, $opacity), 90%), darken(rgba(255, 122, 45, $opacity), 40%));
+      }
+
+
+    }
+
+    animation: 1s #{$name}-flash-3 0.5;
+  }
+}
+
+//startlight控制閃爍延遲
+$timings: (
+  start-0: 0s,
+  start-15: .15s,
+  start-20: .20s,
+  start-25: .25s,
+  start-30: .3s,
+  start-35: .35s,
+  start-40: .4s,
+  start-45: .45s,
+  start-50: .5s,
+  start-55: .55s,
+  start-60: .6s,
+  start-65: .65s,
+  start-70: .7s,
+);
+
+@each $timing-name, $timing in $timings {
+  .#{$timing-name} {
+    animation-delay: $timing;
+  }
+}
+
+
+
+//資訊牆樣式
+
+//更改input樣式 >> 可修改
+.ticket {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+}
+
+#ticket {
+  background: transparent;
+  width: 17vw;
+  height: 7vw;
+  //微調位置
+  position: relative;
+  transform: translate(0%, 0%);
+  top: 40vw;
+  left: -13.6vw;
+
+
+  font-family: Orbitron, sans-serif;
+  font-size: 4vw;
+  color: #e92469;
+  background-color: #410102;
+  text-align: right;
+  /* 將文字置右 */
+}
+
+.ballNumber {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+}
+
+#result_ball {
+  background: transparent;
+  width: 8vw;
+  height: 7vw;
+  //微調位置
+  position: relative;
+  transform: translate(0%, 0%);
+  top: 37vw;
+  left: 0;
+
+
+  font-family: Orbitron, sans-serif;
+  font-size: 4vw;
+  color: #e92469;
+  background-color: #410102;
+  text-align: right;
+  /* 將文字置右 */
+}
+
+.gameNumber {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+}
+
+#result_score {
+  background: transparent;
+  width: 15vw;
+  height: 6.6vw;
+  //微調位置
+  position: relative;
+  transform: translate(0%, 0%);
+  top: 47.6vw;
+  left: 0vw;
+
+  font-family: Orbitron, sans-serif;
+  font-size: 4vw;
+  color: #e92469;
+  background-color: #410102;
+  text-align: right;
+  /* 將文字置右 */
+}
+
+
+.point {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+}
+
+#point {
+  background: transparent;
+  width: 17vw;
+  height: 7vw;
+  //微調位置
+  position: relative;
+  transform: translate(0%, 0%);
+  top: 40vw;
+  left: 14vw;
+
+  font-family: Orbitron, sans-serif;
+  font-size: 4vw;
+  color: #e92469;
+  background-color: #410102;
+  text-align: right;
+  /* 將文字置右 */
+}
+
+
+//下方操作 
+.handle {
+
+  width: 100vw;
+  min-height: calc(100vw * 0.25); //100:130為背景圖的比例
+  background-image: url(/assets/images/拉桿模組.png);
+
+  @include picture() {
+    background-size: contain;
+    background-position: center center;
+  }
+}
+
+.start {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 63%;
+  left: 26%;
+}
+
+//開始燈光閃爍動畫
+.shinning {
+  animation: shinning 0.8s infinite;
+}
+
+@keyframes shinning {
+  20% {
+    color: rgb(22, 86, 247);
+  }
+
+  60% {
+    color: rgb(21, 21, 21);
+  }
+}
+
+
+
+//拉桿
+
+//將拉桿至於娃娃機台右側
+.bar {
+
+  position: absolute;
+  top: 50vw;
+  left: 90vw;
+
+  img {
+    width: 8vw;
+  }
+}
+
+
+.coin {
+  position: absolute;
+  transform: translate(0%, 0%);
+  top: 73%;
+  left: 1%;
+}
+
+
+
+#barImgLong {
+  position: relative;
+  top: 50px;
+  left: 0px;
+  visibility: hidden;
+}
+
+#barImgShort {
+  position: absolute;
+  top: 50px;
+  left: 0px;
+}
+
+
+//middle
+.middle-frame {
+  width: 85% !important;
+  height: calc(85%*0.7) !important; //這段有用在哪??
+  overflow: hidden;
+
+  img {
+    min-width: 120% !important; //讓圖片放大顯示於middle-frame之下
+    position: relative;
+    transform: translate(-50%, 0%); //調整圖片y軸位置
+    top: 50%;
+    left: 50%;
+  }
+
 }
