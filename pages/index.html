@@ -124,7 +124,7 @@
               <img class="middle-img" src="http://61.222.52.130:60081/0/stream" />
             </div>
             <!--拉桿 -->
-            <a href="javascript:void(0)" id="bar" class="d-block bar">
+            <a href="javascript:void(0)" id="button_play_game" class="bar">
               <div class="barControl" id="barControl"><img src="../assets/images/把手-長.svg" alt="把手" id="barImgLong"><img
                   src="../assets/images/把手-短.svg" alt="短把手" id="barImgShort"></div>
             </a>
@@ -233,7 +233,7 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
       <script>
 
-        console.log(123456);
+
         // 獲取所有點燈的元素
         const lights = document.querySelectorAll('.pointLight');
 
@@ -424,22 +424,32 @@
 
 
 
-        //每投一次硬幣(每點擊一次)，有5球(要讓後台知道有5顆球要辨識)
+        //每投一次硬幣，局數+1
 
         let coinCount = 0;
+
         buttonInsertCoin.addEventListener('click', function () {
           cointMusic.play();  //播放投幣音樂
 
           coinCount++;
           pointAmount.value = coinCount; //增加投幣次數
-          if (parseInt(document.getElementById('result_ball').value) === 0) {
-            console.log(document.getElementById('result_ball').value);  //抓不到?
-
-            pointAmount.value--;
-          }
-
         })
 
+        //result_ball每歸零一次，局數-1
+        function setPointAmount() {
+
+          if (parseInt(result_ball.value) === 0 && pointAmount.value > 0) {
+            console.log(`偵測${result_score.value}`);
+
+            pointAmount.value--;  //一直跟著ajax減一
+            return;
+            console.log("這個值是不是只出現一次");
+          } else {
+            console.log("false抓不到");
+          }
+
+
+        }
 
 
         //藍色閃爍
@@ -490,8 +500,7 @@
 
         //拉桿
         // **但不知為何點兩下，才會有反應**        
-        const pullBar = document.getElementById('barControl');
-        const bar = document.getElementById('bar');  //a標籤
+        const bar = document.getElementById('button_play_game');  //a標籤
         const barImgLong = document.getElementById('barImgLong');
         const barImgShort = document.getElementById('barImgShort');
 
@@ -551,9 +560,6 @@
 
 
 
-
-
-
         //串接ajax功能
         const BIZLUTION_RESTFUL_API_URL = "http://61.222.52.130:60050/"
         $(document).ready(function () {
@@ -583,11 +589,23 @@
             })
           }
 
+          function playGame() {
+            $.ajax({
+              url: BIZLUTION_RESTFUL_API_URL + 'play_game',
+              async: false,
+              error: function (result) {
+              },
+              success: function (result) {
+
+              }
+            })
+          }
+
           function getResult() {
             $.ajax({
               dataType: "json",
               url: BIZLUTION_RESTFUL_API_URL + 'get_result',
-              async: true,
+              async: false,
               error: function (result) {
               },
               success: function (result) {
@@ -610,11 +628,12 @@
                 //得分球亮燈功能
                 handleResultScoreChange();
 
+                //球數為0自動局數減一功能***Setimout
+                setPointAmount();
+
               }
             })
           }
-
-
 
 
           //網址http://192.168.1.59:5000/insert_coin 自動跳出功能並執行
@@ -628,6 +647,9 @@
             startGame()
           })
 
+          $('#button_play_game').on('click', function (event) {
+            playGame()
+          })
 
           function foo() {
             getResult()
