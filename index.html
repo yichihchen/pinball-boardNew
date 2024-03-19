@@ -13,8 +13,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
 
   <title>index</title>
-  <script type="module" crossorigin src="/pinball-boardnew/assets/index-e94faf08.js"></script>
-  <link rel="stylesheet" href="/pinball-boardnew/assets/index-ce60e6a6.css">
+  <script type="module" crossorigin src="/pinball-boardnew/assets/index-1677d6cb.js"></script>
+  <link rel="stylesheet" href="/pinball-boardnew/assets/index-b6dace1a.css">
 </head>
 
 <body>
@@ -125,7 +125,7 @@
               <img class="middle-img" src="http://61.222.52.130:60081/0/stream" />
             </div>
             <!--拉桿 -->
-            <a href="javascript:void(0)" id="button_play_game" class="bar">
+            <a href="javascript:void(0)" id="button_play_game" class="bar p-0">
               <div class="barControl" id="barControl"><img src="/pinball-boardnew/assets/把手-長-4ba8f537.svg" alt="把手" id="barImgLong"><img
                   src="/pinball-boardnew/assets/把手-短-447b12b9.svg" alt="短把手" id="barImgShort"></div>
             </a>
@@ -505,12 +505,12 @@
         const barImgShort = document.getElementById('barImgShort');
 
         bar.addEventListener('click', function () {
-          barImgLong.style.visibility = 'visible';
+          barImgLong.style.display = 'block';
           setInterval(function () {
-            barImgLong.style.visibility = 'hidden';
-            barImgShort.style.visibility = 'visible';
+            barImgLong.style.display = 'none';
+            barImgShort.style.display = 'block';
           }, 600);
-          barImgShort.style.visibility = 'hidden';
+          barImgShort.style.display = 'none';
 
         })
 
