@@ -312,11 +312,13 @@
 
           } else if (Number(result_ball.value) === 0 && Number(result_score.value) % 5 === 0) {
 
-            //****順便一起抓data-ticket的值****
-            // const getPointId = document.getElementById('pointLight20');
-            // const ticketValue = getPointId.getAttribute('data-ticket');
-            // console.log(ticketValue); 
-            setTimeout(function () {//這裡加上清除所有動畫樣式
+            //抓data-ticket的值
+            const getPointId = document.getElementById(`pointLight${(result_score.value)}`);
+            console.log(1234);
+            const ticketValue = getPointId.getAttribute('data-ticket');  //彩票值
+            ticket.value = ticketValue;  //將彩票值放入彩票欄位內
+
+            setTimeout(function () {    //這裡加上清除所有動畫樣式
 
               lights.forEach(function (item) {
                 //將"不是"得分的分數反灰
@@ -615,10 +617,10 @@
                 $('#result_detail').val(result.data.detail)
 
                 //加 result score
-                result_score.value = result.data.score;
-                document.getElementById('result_score').value = result.data.score;
-                console.log(result_score.value);
-                console.log(document.getElementById(`pointLight${result_score.value}`));
+                // result_score.value = result.data.score;
+                // document.getElementById('result_score').value = result.data.score;
+                // console.log(result_score.value);
+                // console.log(document.getElementById(`pointLight${result_score.value}`));
 
                 //將球數內容改為:5-API的ball數量
                 const remainingBalls = 5 - parseInt($('#result_ball').val())
@@ -651,11 +653,15 @@
             playGame()
           })
 
+
+
+          //這個功能可以改名
           function foo() {
             getResult()
             setTimeout(foo, 1000)
           }
           foo()
+
 
 
         })
