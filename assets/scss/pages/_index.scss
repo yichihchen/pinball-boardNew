@@ -441,8 +441,6 @@ $timings: (
   transform: translate(0%, 0%);
   top: 40vw;
   left: -13.6vw;
-
-
   font-family: Orbitron, sans-serif;
   font-size: 4vw;
   color: #e92469;
@@ -602,7 +600,7 @@ $timings: (
   position: absolute;
   top: 6vw;  //避免拉桿RWD，位置上下亂動
   left: 0px;
-  // z-index: -1;
+  
 }
 
 
