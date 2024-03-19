@@ -574,6 +574,7 @@ $timings: (
   position: absolute;
   top: 50vw;
   left: 90vw;
+  z-index: 1;
 
   img {
     width: 8vw;
@@ -592,15 +593,16 @@ $timings: (
 
 #barImgLong {
   position: relative;
-  top: 50px;
+  top: 6vw;  //避免拉桿RWD，位置上下亂動
   left: 0px;
-  visibility: hidden;
+  display:none;
 }
 
 #barImgShort {
   position: absolute;
-  top: 50px;
+  top: 6vw;  //避免拉桿RWD，位置上下亂動
   left: 0px;
+  // z-index: -1;
 }
 
 
