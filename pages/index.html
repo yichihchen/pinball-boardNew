@@ -336,10 +336,11 @@
             }, 3000);
           }
 
-          //點擊開始後彩票數歸零
+          //點擊開始後彩票數歸零  這裡沒用??
           buttonStartGame.addEventListener('click', function () {
             setTimeout(function () {
               ticket.value = 0;
+              
             }, 3000);  //等候三秒再執行，就不會受到result_score影響
           });
 
@@ -432,7 +433,6 @@
 
         //每投一次硬幣，局數+1
         //設定不能連續在幾秒之內點選開始兩次 debounce
-
         let coinCount = 0;
 
         buttonInsertCoin.addEventListener('click', function () {
