@@ -132,8 +132,8 @@
             <div class="coin">
               <!-- 原本id為pressCoin -->
               <div class="coin-button"><a href="javascript:void(0)" id="button_insert_coin"><span
-                    style="font-size:6vw; color: rgb(255, 72, 0)"><i class="fa-solid fa-coins"></i></span></a>
-                <p>Insert Coin</p>
+                    style="font-size:6vw; color: rgb(255, 94, 0)"><i class="fa-solid fa-coins"></i></span></a>
+
               </div>
 
             </div>
@@ -314,20 +314,20 @@
 
             //抓data-ticket的值
             const getPointId = document.getElementById(`pointLight${(result_score.value)}`);
-            console.log(1234);
             const ticketValue = getPointId.getAttribute('data-ticket');  //彩票值
             ticket.value = ticketValue;  //將彩票值放入彩票欄位內
+
 
             setTimeout(function () {    //這裡加上清除所有動畫樣式
 
               lights.forEach(function (item) {
                 //將"不是"得分的分數反灰
                 if (item.id !== `pointLight${(result_score.value)}`) {
-                  item.classList.remove('firstGetpoint', 'pointLight-out1', 'pointLight-out2', 'highlight', 'nothighlight');
+                  item.classList.remove('firstGetpoint', 'pointLight-out1', 'pointLight-out2', 'highlight', 'nothighlight','startlight');
                   item.classList.add('nothighlight');
 
                 } else {
-                  item.classList.remove('firstGetpoint', 'pointLight-out1', 'pointLight-out2', 'highlight', 'nothighlight');
+                  item.classList.remove('firstGetpoint', 'pointLight-out1', 'pointLight-out2', 'highlight', 'nothighlight','startlight');
                   item.classList.add('highlight');
 
                 }
@@ -336,10 +336,14 @@
             }, 3000);
           }
 
+          //點擊開始後彩票數歸零
+          buttonStartGame.addEventListener('click', function () {
+            setTimeout(function () {
+              ticket.value = 0;
+            }, 3000);  //等候三秒再執行，就不會受到result_score影響
+          });
+
         }
-
-
-
 
 
 
@@ -427,6 +431,7 @@
 
 
         //每投一次硬幣，局數+1
+        //設定不能連續在幾秒之內點選開始兩次 debounce
 
         let coinCount = 0;
 
@@ -435,6 +440,9 @@
 
           coinCount++;
           pointAmount.value = coinCount; //增加投幣次數
+          console.log(`coinCount++ pointAmount.value${pointAmount.value}`);
+          //要清除掉之前加上去的***
+          
         })
 
         //result_ball每歸零一次，局數-1
@@ -442,12 +450,15 @@
 
           if (parseInt(result_ball.value) === 0 && pointAmount.value > 0) {
             console.log(`偵測${result_score.value}`);
+            // pointAmount.value--;  //一直跟著ajax減一
+            coinCount--;
+            pointAmount.value = coinCount;
+            console.log(`setPointAmount()pointAmount.value${pointAmount.value}`);
+            return;   //退出函式
 
-            pointAmount.value--;  //一直跟著ajax減一
-            return;
-            console.log("這個值是不是只出現一次");
           } else {
             console.log("false抓不到");
+
           }
 
 
@@ -473,8 +484,9 @@
           bootMusic3_2.pause();
           bootMusic3_3.pause();
 
-
           startMusic.play();   //播放開始音樂
+
+          //點擊開始後數據reset
 
           //開始13秒後，自動播放打彈珠時的背景音樂1
           startMusic.onended = function () {
@@ -487,7 +499,6 @@
           playMusic1.onended = function () {
             playMusic2.play();
           }
-
 
           // 點擊開始>閃爍燈號樣式
           //先清除原有燈號樣式
@@ -616,37 +627,62 @@
                 $('#result_ball').val(result.data.ball)
                 $('#result_detail').val(result.data.detail)
 
-                //加 result score
-                // result_score.value = result.data.score;
-                // document.getElementById('result_score').value = result.data.score;
-                // console.log(result_score.value);
-                // console.log(document.getElementById(`pointLight${result_score.value}`));
 
                 //將球數內容改為:5-API的ball數量
-                const remainingBalls = 5 - parseInt($('#result_ball').val())
+                const remainingBalls = 5 - parseInt($('#result_ball').val());
                 console.log(remainingBalls);
                 document.getElementById('result_ball').value = remainingBalls;
 
                 //得分球亮燈功能
                 handleResultScoreChange();
 
-                //球數為0自動局數減一功能***Setimout
-                setPointAmount();
+
 
               }
             })
           }
 
 
+          //針對setPointAmount()功能製作一個ajax功能
+          function getPointAmount() {
+            $.ajax({
+              dataType: "json",
+              url: BIZLUTION_RESTFUL_API_URL + 'get_result',
+              async: false,
+              error: function (result) {
+              },
+              success: function (result) {
+
+                $('#result_score').val(result.data.score)
+                $('#result_ball').val(result.data.ball)
+                $('#result_detail').val(result.data.detail)
+
+                //將球數內容改為:5-API的ball數量
+                const remainingBalls = 5 - parseInt($('#result_ball').val());
+                console.log(remainingBalls);
+                document.getElementById('result_ball').value = remainingBalls;
+
+                setPointAmount();
+
+              }
+            })
+          }
+
           //網址http://192.168.1.59:5000/insert_coin 自動跳出功能並執行
           //依照此id可執行
           $('#button_insert_coin').on('click', function (event) {
             insertCoin()
-            //當球數為0時，減一
+
           })
 
           $('#button_start_game').on('click', function (event) {
-            startGame()
+            startGame();
+          })
+
+
+          $('#button_start_game').on('click', function (event) {
+            getPointAmount();
+
           })
 
           $('#button_play_game').on('click', function (event) {
@@ -662,6 +698,7 @@
           }
           foo()
 
+        
 
 
         })

@@ -1,4 +1,4 @@
-.container-fluid{
+.container-fluid {
   margin: 0;
   padding: 0;
   display: flex;
@@ -6,15 +6,14 @@
   justify-content: center;
   height: 100vh;
 }
+
 #scroller {
   overflow-y: scroll;
   overflow-x: hidden;
-  margin : 0;
-  padding : 0;
   height: 100vh;
   width: 100vw;
-  /*border: 5px dashed orange;*/
-  
+  border: 5px dashed orange;
+
 }
 
 #drag {
@@ -441,8 +440,8 @@ $timings: (
   transform: translate(0%, 0%);
   top: 40vw;
   left: -13.6vw;
-  font-family: Orbitron, sans-serif;
-  font-size: 4vw;
+  font-family: segment, Orbitron, sans-serif;
+  font-size: 6vw;
   color: #e92469;
   background-color: #410102;
   text-align: right;
@@ -465,10 +464,8 @@ $timings: (
   transform: translate(0%, 0%);
   top: 37vw;
   left: 0;
-
-
-  font-family: Orbitron, sans-serif;
-  font-size: 4vw;
+  font-family: segment, Orbitron, sans-serif;
+  font-size: 6vw;
   color: #e92469;
   background-color: #410102;
   text-align: right;
@@ -492,8 +489,8 @@ $timings: (
   top: 47.6vw;
   left: 0vw;
 
-  font-family: Orbitron, sans-serif;
-  font-size: 4vw;
+  font-family: segment, Orbitron, sans-serif;
+  font-size: 6vw;
   color: #e92469;
   background-color: #410102;
   text-align: right;
@@ -518,8 +515,8 @@ $timings: (
   top: 40vw;
   left: 14vw;
 
-  font-family: Orbitron, sans-serif;
-  font-size: 4vw;
+  font-family: segment, Orbitron, sans-serif;
+  font-size: 6vw;
   color: #e92469;
   background-color: #410102;
   text-align: right;
@@ -583,24 +580,24 @@ $timings: (
 .coin {
   position: absolute;
   transform: translate(0%, 0%);
-  top: 73%;
-  left: 1%;
+  top: 56vw;
+  left: 0px;
 }
 
 
 
 #barImgLong {
   position: relative;
-  top: 6vw;  //避免拉桿RWD，位置上下亂動
+  top: 6vw; //避免拉桿RWD，位置上下亂動
   left: 0px;
-  display:none;
+  display: none;
 }
 
 #barImgShort {
   position: absolute;
-  top: 6vw;  //避免拉桿RWD，位置上下亂動
+  top: 6vw; //避免拉桿RWD，位置上下亂動
   left: 0px;
-  
+
 }
 
 
