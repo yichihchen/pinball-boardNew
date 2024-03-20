@@ -13,8 +13,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
 
   <title>index</title>
-  <script type="module" crossorigin src="/pinball-boardnew/assets/index-d2659776.js"></script>
-  <link rel="stylesheet" href="/pinball-boardnew/assets/index-46f91a58.css">
+  <script type="module" crossorigin src="/pinball-boardnew/assets/index-0e72dd78.js"></script>
+  <link rel="stylesheet" href="/pinball-boardnew/assets/index-7f88b051.css">
 </head>
 
 <body>
@@ -133,7 +133,7 @@
             <div class="coin">
               <!-- 原本id為pressCoin -->
               <div class="coin-button"><a href="javascript:void(0)" id="button_insert_coin"><span
-                    style="font-size:6vw; color: rgb(255, 94, 0)"><i class="fa-solid fa-coins"></i></span></a>
+                    style="font-size:6vw; color: rgb(255, 213, 0)"><i class="fa-solid fa-coins"></i></span></a>
 
               </div>
 
@@ -441,7 +441,7 @@
           coinCount++;
           pointAmount.value = coinCount; //增加投幣次數
           console.log(`coinCount++ pointAmount.value${pointAmount.value}`);
-          //要清除掉之前加上去的***
+          
           
         })
 
@@ -451,8 +451,8 @@
           if (parseInt(result_ball.value) === 0 && pointAmount.value > 0) {
             console.log(`偵測${result_score.value}`);
             // pointAmount.value--;  //一直跟著ajax減一
-            coinCount--;
-            pointAmount.value = coinCount;
+            coinCount--;  
+            pointAmount.value = coinCount;  //不用pointAmount.value-- 是避免和上面的 pointAmount.value = coinCount;不同步
             console.log(`setPointAmount()pointAmount.value${pointAmount.value}`);
             return;   //退出函式
 
