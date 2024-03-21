@@ -802,20 +802,18 @@
 
         //電腦一開始畫面移到間
         const scrollerClientHeight = parseInt(scroller.clientHeight * 0.8);
+        const scrollerScrollHeight = scroller.scrollHeight;
 
         document.addEventListener("DOMContentLoaded", () => {
           console.log("Hello World!");
           console.log(`scroller.scrollHeight${scroller.scrollHeight}`); //整個畫面的高度
-
-          const scrollerScrollHeight = scroller.scrollHeight;
-
           scroller.scroll({
             top: scrollerClientHeight,  //往下滑動
             left: 0,
             behavior: "instant",
           });
-          checkCursorPC();
-          checkCursorMobile();
+          // checkCursorPC();
+          startup();
         })
 
         //改變瀏覽器寬度
@@ -825,14 +823,14 @@
             left: 0,
             behavior: "instant",
           });
-          checkCursorPC();
-          checkCursorMobile();
-          console.log(`scroller.scrollHeight${scroller.scrollHeight}`);
+          // checkCursorPC();
+          startup();
+          console.log(`2scroller.scrollHeight${scroller.scrollHeight}`);
         };
 
         //當觸發scroll時，關閉掉下方的螢幕自動滑動
 
-        scroller.removeEventListener('scroll', checkCursor);
+        scroller.removeEventListener('scroll', checkCursorMobile);
 
         //監聽滑鼠滑動後螢幕滑動位置(電腦)
         // function checkCursorPC() {
@@ -863,9 +861,10 @@
         // };
 
         //監聽觸碰螢幕滑動位置(手機)
-        scroller.addEventListener("touchcancel", checkCursorMobile);
 
-        function checkCursorMobile() {
+
+        function checkCursorMobile(e) {
+
           console.log(e);
           console.log(`mobile scroller clientHeight ${scroller.clientHeight}`);
           console.log(`mobile scroller clientwidth ${scroller.clientWidth}`);
@@ -877,8 +876,10 @@
           });
         };
 
+        function startup() {
+          scroller.addEventListener("touchcancel", checkCursorMobile);
+        }
 
-     
       </script>
 </body>
 
