@@ -864,30 +864,19 @@
 
         //監聽觸碰螢幕滑動位置(手機)
         function checkCursorMobile() {
-          scroller.addEventListener('touchstart', function (e) {
-            let x = e.pageX;
-            let y = e.pageY;
+          scroller.addEventListener('touchend', function (e) {
 
-            console.log(x, y);
             console.log(e);
             console.log(`mobile scroller clientHeight ${scroller.clientHeight}`);
             console.log(`mobile scroller clientwidth ${scroller.clientWidth}`);
-            if (y <= scrollerClientHeight) {
-              console.log("小於scrollerClientHeight三分之一");
-              scroller.scrollTo({
-                top: -scrollerClientHeight,  //往下滑動
-                left: 0,
-                behavior: "smooth",
-              });
-            } else {
-              console.log("大於scrollerClientHeight三分之一");
-              scroller.scrollTo({
-                top: scrollerClientHeight,  //往上滑動
-                left: 0,
-                behavior: "smooth",
-              });
-            }
+
+            scroller.scrollTo({
+              top: -scrollerClientHeight,  //往下滑動
+              left: 0,
+              behavior: "smooth",
+            });
           });
+
         };
 
 
