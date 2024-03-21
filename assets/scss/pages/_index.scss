@@ -12,7 +12,7 @@
   overflow-x: hidden;
   height: 100vh;
   width: 100vw;
-  // border: 5px dashed orange;
+  border: 5px dashed orange;
 
 }
 
@@ -532,8 +532,10 @@ $timings: (
   background-image: url(/assets/images/拉桿模組.jpg);
 
   @include picture() {
-    background-size: contain;
-    background-position: center center;
+    // background-size: contain;
+    // background-position: center center;
+    background-size: 100% 100%; //背景的寬度為100% 原因是視窗依照其寬度做縮放，高度是隨著寬度而改變
+    background-position: center 0%; //背景的基準點為，父層容器x軸的中央(背景圖x軸置中，y軸從背景的頂部開始) 
   }
 }
 
