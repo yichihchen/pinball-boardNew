@@ -815,6 +815,7 @@
             behavior: "instant",
           });
           checkCursorPC();
+          checkCursorMobile();
         })
 
         //改變瀏覽器寬度
@@ -825,6 +826,7 @@
             behavior: "instant",
           });
           checkCursorPC();
+          checkCursorMobile();
           console.log(`scroller.scrollHeight${scroller.scrollHeight}`);
         };
 
@@ -833,32 +835,32 @@
         scroller.removeEventListener('scroll', checkCursor);
 
         //監聽滑鼠滑動後螢幕滑動位置(電腦)
-        function checkCursorPC() {
-          scroller.addEventListener('mousemove', function (e) {
-            let x = e.pageX;
-            let y = e.pageY;
+        // function checkCursorPC() {
+        //   scroller.addEventListener('mousemove', function (e) {
+        //     let x = e.pageX;
+        //     let y = e.pageY;
 
-            console.log(x, y);
-            console.log(e);
-            console.log(`scroller clientHeight ${scroller.clientHeight}`);
-            console.log(`scroller clientwidth ${scroller.clientWidth}`);
-            if (y <= scrollerClientHeight) {
-              console.log("小於scrollerClientHeight三分之一");
-              scroller.scrollTo({
-                top: -scrollerClientHeight,  //往下滑動
-                left: 0,
-                behavior: "smooth",
-              });
-            } else {
-              console.log("大於scrollerClientHeight三分之一");
-              scroller.scrollTo({
-                top: scrollerClientHeight,  //往上滑動
-                left: 0,
-                behavior: "smooth",
-              });
-            }
-          });
-        };
+        //     console.log(x, y);
+        //     console.log(e);
+        //     console.log(`scroller clientHeight ${scroller.clientHeight}`);
+        //     console.log(`scroller clientwidth ${scroller.clientWidth}`);
+        //     if (y <= scrollerClientHeight) {
+        //       console.log("小於scrollerClientHeight三分之一");
+        //       scroller.scrollTo({
+        //         top: -scrollerClientHeight,  //往下滑動
+        //         left: 0,
+        //         behavior: "smooth",
+        //       });
+        //     } else {
+        //       console.log("大於scrollerClientHeight三分之一");
+        //       scroller.scrollTo({
+        //         top: scrollerClientHeight,  //往上滑動
+        //         left: 0,
+        //         behavior: "smooth",
+        //       });
+        //     }
+        //   });
+        // };
 
         //監聽觸碰螢幕滑動位置(手機)
         function checkCursorMobile() {
