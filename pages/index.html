@@ -871,14 +871,14 @@
             console.log(`mobile scroller clientwidth ${scroller.clientWidth}`);
 
             scroller.scrollTo({
-              top: -scrollerClientHeight,  //往下滑動
+              top: scrollerClientHeight,  //往下滑動
               left: 0,
               behavior: "smooth",
             });
           });
 
         };
-
+        checkCursorMobile();
 
       </script>
 </body>
