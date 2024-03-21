@@ -13,8 +13,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
 
   <title>index</title>
-  <script type="module" crossorigin src="/pinball-boardnew/assets/index-0e72dd78.js"></script>
-  <link rel="stylesheet" href="/pinball-boardnew/assets/index-7f88b051.css">
+  <script type="module" crossorigin src="/pinball-boardnew/assets/index-f76bfed3.js"></script>
+  <link rel="stylesheet" href="/pinball-boardnew/assets/index-c4c4d9d9.css">
 </head>
 
 <body>
@@ -323,11 +323,11 @@
               lights.forEach(function (item) {
                 //將"不是"得分的分數反灰
                 if (item.id !== `pointLight${(result_score.value)}`) {
-                  item.classList.remove('firstGetpoint', 'pointLight-out1', 'pointLight-out2', 'highlight', 'nothighlight','startlight');
+                  item.classList.remove('firstGetpoint', 'pointLight-out1', 'pointLight-out2', 'highlight', 'nothighlight', 'startlight');
                   item.classList.add('nothighlight');
 
                 } else {
-                  item.classList.remove('firstGetpoint', 'pointLight-out1', 'pointLight-out2', 'highlight', 'nothighlight','startlight');
+                  item.classList.remove('firstGetpoint', 'pointLight-out1', 'pointLight-out2', 'highlight', 'nothighlight', 'startlight');
                   item.classList.add('highlight');
 
                 }
@@ -340,7 +340,7 @@
           buttonStartGame.addEventListener('click', function () {
             setTimeout(function () {
               ticket.value = 0;
-              
+
             }, 3000);  //等候三秒再執行，就不會受到result_score影響
           });
 
@@ -441,8 +441,8 @@
           coinCount++;
           pointAmount.value = coinCount; //增加投幣次數
           console.log(`coinCount++ pointAmount.value${pointAmount.value}`);
-          
-          
+
+
         })
 
         //result_ball每歸零一次，局數-1
@@ -451,7 +451,7 @@
           if (parseInt(result_ball.value) === 0 && pointAmount.value > 0) {
             console.log(`偵測${result_score.value}`);
             // pointAmount.value--;  //一直跟著ajax減一
-            coinCount--;  
+            coinCount--;
             pointAmount.value = coinCount;  //不用pointAmount.value-- 是避免和上面的 pointAmount.value = coinCount;不同步
             console.log(`setPointAmount()pointAmount.value${pointAmount.value}`);
             return;   //退出函式
@@ -698,11 +698,195 @@
           }
           foo()
 
-        
+
 
 
         })
 
+
+        //滾動效果 drag全部都再viewport內確實不用滾
+
+        // let center_y = 0
+        const scroller = document.querySelector("#scroller");
+        const image = document.querySelector("#drag");
+        const board = document.querySelector('#board');
+
+        // document.addEventListener("DOMContentLoaded", () => {
+        //   console.log("Hello World!");
+        //   scroller.addEventListener("scroll", (event) => {
+        //     //output.textContent = `scrollTop: ${scroller.scrollTop}`;
+        //     //scroller.scroll(0,400)
+        //     console.log('scroller.scrollTop' + scroller.scrollTop);
+        //   });
+
+        //   startup();
+        // });
+        // window.onresize = function () { startup(); };
+        // function handleStart() {
+
+        //   console.log('handleStart');
+        // }
+        // function handleEnd() {
+
+        //   // $("#scroller").scrollTop(800);
+        //   scroller.scroll({
+        //     top: center_y,
+        //     left: 0,
+        //     behavior: "smooth",
+        //   });
+        // }
+        // function handleMove() {
+
+        //   console.log('handleMove');
+        // }
+        // function handleCancel() {
+        //   console.log('handleCancel');
+        //   scroller.scroll({
+        //     top: center_y,
+        //     left: 0,
+        //     behavior: "smooth",
+        //   });
+        // }
+
+
+        // const limit = Math.max(document.body.scrollHeight, document.body.offsetHeight,
+        //   document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight);
+        // function startup() {
+        //   //新增電腦監聽
+
+        //   image.addEventListener("touchstart", handleStart);
+        //   image.addEventListener("touchend", handleEnd);
+        //   image.addEventListener("touchcancel", handleCancel);
+        //   image.addEventListener("touchmove", handleMove);
+        //   // let realWidth = image.naturalWidth;
+        //   // let realHeight = image.naturalHeight;
+        //   let realHeight = board.offsetHeight;
+        //   let realWidth = board.offsetWidth;
+        //   console.log(image.offsetHeight + " " + realHeight);
+        //   console.log(image.offsetWidth + " " + realWidth);
+        //   console.log(document.documentElement.clientHeight)
+        //   console.log(document.documentElement.clientWidth)
+        //   console.log("Initialized.");
+
+        //   // imageHeight = realHeight * document.documentElement.clientWidth / realWidth
+        //   // center_y = (imageHeight - document.documentElement.clientHeight) / 2
+        //   center_y = realHeight * 0.6;
+        //   scroller.scroll({
+        //     top: center_y,
+        //     left: 0,
+        //     behavior: "instant",
+        //   });
+        // }
+
+
+        //throttle
+        function throttle(fn, delay = 2000) {
+          let timer = null;
+          return function (...args) {
+            if (timer) return;
+            timer = setTimeout(() => {
+              timer = null;
+            }, delay);
+            fn.apply(this, args);
+          };
+        }
+
+        const updateThrottleText = throttle(() => {
+          console.log("throttle");
+        }, 2000);
+
+        scroller.addEventListener("scroll", () => {
+          updateThrottleText();
+        });
+
+
+        //電腦一開始畫面移到間
+        const scrollerClientHeight = parseInt(scroller.clientHeight * 0.8);
+
+        document.addEventListener("DOMContentLoaded", () => {
+          console.log("Hello World!");
+          console.log(`scroller.scrollHeight${scroller.scrollHeight}`); //整個畫面的高度
+
+          const scrollerScrollHeight = scroller.scrollHeight;
+
+          scroller.scroll({
+            top: scrollerClientHeight,  //往下滑動
+            left: 0,
+            behavior: "instant",
+          });
+          checkCursorPC();
+        })
+
+        //改變瀏覽器寬度
+        window.onresize = function () {
+          scroller.scroll({
+            top: scrollerClientHeight,  //往下滑動
+            left: 0,
+            behavior: "instant",
+          });
+          checkCursorPC();
+          console.log(`scroller.scrollHeight${scroller.scrollHeight}`);
+        };
+
+        //當觸發scroll時，關閉掉下方的螢幕自動滑動
+
+        scroller.removeEventListener('scroll', checkCursor);
+
+        //監聽滑鼠滑動後螢幕滑動位置(電腦)
+        function checkCursorPC() {
+          scroller.addEventListener('mousemove', function (e) {
+            let x = e.pageX;
+            let y = e.pageY;
+
+            console.log(x, y);
+            console.log(e);
+            console.log(`scroller clientHeight ${scroller.clientHeight}`);
+            console.log(`scroller clientwidth ${scroller.clientWidth}`);
+            if (y <= scrollerClientHeight) {
+              console.log("小於scrollerClientHeight三分之一");
+              scroller.scrollTo({
+                top: -scrollerClientHeight,  //往下滑動
+                left: 0,
+                behavior: "smooth",
+              });
+            } else {
+              console.log("大於scrollerClientHeight三分之一");
+              scroller.scrollTo({
+                top: scrollerClientHeight,  //往上滑動
+                left: 0,
+                behavior: "smooth",
+              });
+            }
+          });
+        };
+
+        //監聽觸碰螢幕滑動位置(手機)
+        function checkCursorMobile() {
+          scroller.addEventListener('touchstart', function (e) {
+            let x = e.pageX;
+            let y = e.pageY;
+
+            console.log(x, y);
+            console.log(e);
+            console.log(`mobile scroller clientHeight ${scroller.clientHeight}`);
+            console.log(`mobile scroller clientwidth ${scroller.clientWidth}`);
+            if (y <= scrollerClientHeight) {
+              console.log("小於scrollerClientHeight三分之一");
+              scroller.scrollTo({
+                top: -scrollerClientHeight,  //往下滑動
+                left: 0,
+                behavior: "smooth",
+              });
+            } else {
+              console.log("大於scrollerClientHeight三分之一");
+              scroller.scrollTo({
+                top: scrollerClientHeight,  //往上滑動
+                left: 0,
+                behavior: "smooth",
+              });
+            }
+          });
+        };
 
 
       </script>
