@@ -12,7 +12,7 @@
   overflow-x: hidden;
   height: 100vh;
   width: 100vw;
-  border: 5px dashed orange;
+  // border: 5px dashed orange;
 
 }
 
@@ -551,6 +551,10 @@ $timings: (
   animation: shinning 0.8s infinite;
 }
 
+.notshinning {
+  color: rgb(21, 21, 21);
+}
+
 @keyframes shinning {
   20% {
     color: rgb(22, 86, 247);
@@ -569,7 +573,7 @@ $timings: (
 .bar {
 
   position: absolute;
-  top: 50vw;
+  top: 144vw; //50vw
   left: 90vw;
   z-index: 1;
 
@@ -582,7 +586,7 @@ $timings: (
 .coin {
   position: absolute;
   transform: translate(0%, 0%);
-  top: 56vw;
+  top: 150vw; //56vw
   left: 0px;
 }
 
@@ -605,16 +609,33 @@ $timings: (
 
 //middle
 .middle-frame {
-  width: 85% !important;
+  width: 108% !important; //85%
   height: calc(85%*0.7) !important; //這段有用在哪??
   overflow: hidden;
 
   img {
-    min-width: 120% !important; //讓圖片放大顯示於middle-frame之下
+    min-width: 104% !important; //讓圖片放大顯示於middle-frame之下 120%
     position: relative;
     transform: translate(-50%, 0%); //調整圖片y軸位置
     top: 50%;
-    left: 50%;
+    left: 48%; //50%
   }
 
+}
+
+//charge
+
+
+svg {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 40%;
+  left: 80%;
+  border-radius: 10%;
+
+}
+
+.transition-3 {
+  transition: width 0.3s;
+  /* 使用过渡效果让宽度变化更平滑 */
 }
