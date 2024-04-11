@@ -7,3 +7,4 @@ exec("npm run build && scp -r ./dist/* user@192.168.1.59:/var/www/html/pinball-b
 //     }
 //     console.log(`stdout: ${stdout}`);
 //     console.error(`stderr: ${stderr}`);
+// });

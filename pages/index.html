@@ -11,6 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.css" />
 
   <title>index</title>
 </head>
@@ -125,19 +126,13 @@
               <!--http://61.222.52.130:60081/0/stream  -->
             </div>
             <!--拉桿 -->
-            <a href="javascript:void(0)" id="button_play_game" class="bar p-0">
+
+            <!-- <a href="javascript:void(0)" id="" class="bar p-0">
               <div class="barControl" id="barControl"><img src="../assets/images/把手-長.svg" alt="把手" id="barImgLong"><img
                   src="../assets/images/把手-短.svg" alt="短把手" id="barImgShort"></div>
-            </a>
-            <!-- 投幣按鈕 -->
-            <div class="coin">
-              <!-- 原本id為pressCoin -->
-              <div class="coin-button"><a href="javascript:void(0)" id="button_insert_coin"><span
-                    style="font-size:6vw; color: rgb(255, 119, 0)"><i class="fa-solid fa-coins"></i></span></a>
+            </a> -->
 
-              </div>
 
-            </div>
 
           </div>
 
@@ -150,21 +145,125 @@
                     class="shinning" id="startButtonSvg"><i class="fa-solid fa-circle-dot"></i></span></a>
               </div>
             </div>
+
+            <!-- <div class="coin">
+                <div class="coin-button"><a href="javascript:void(0)" id="button_insert_coin"><span
+                      style="font-size:6vw; color: rgb(255, 119, 0)"><i class="fa-solid fa-coins"></i></span></a>
+                </div>
+              </div> -->
+
+
             <!-- 充電紐 -->
 
             <!-- svg寬和高都參照父層handle -->
-            <svg width="20%" height="20%" xmlns="http://www.w3.org/2000/svg" style="outline: thin solid red"
-              id="chargeRect">
-              <!-- 可以讓width百分比變動即可，y不要移動 -->
-              <rect width="0%" height="100%" x="0" y="0" rx="4" ry="4" fill="blue" id="chargeValue" />
-            </svg>
-
-
-
+            <a href="javascript:void(0)" id="chargeRect">
+              <svg width="20%" height="20%" xmlns="http://www.w3.org/2000/svg" style="outline: thin solid red" id="">
+                <!-- 原本id id chargeRect-->
+                <!-- 可以讓width百分比變動即可，y不要移動 -->
+                <rect width="0%" height="100%" x="0" y="0" rx="4" ry="4" fill="blue" id="chargeValue" />
+              </svg>
+            </a>
 
           </div>
           <!-- 娃娃機下半部 end-->
 
+          <!-- 娃娃機API按紐 -->
+          <div class="d-flex">
+            <!-- 投幣 -->
+            <div class="insertCoin" style="display:none">
+              <a href="javascript:void(0)" id="button_insert_coin"><span
+                  style="font-size:6vw; color: rgb(255, 119, 0)"><i class="fa-solid fa-coins"></i></span>投幣</a>
+            </div>
+            <!-- 進球 -->
+            <div class="ball-in">
+              <a href="javascript:void(0)" id="button_game_action_shortcut_1"><span
+                  style="font-size:6vw; color: rgb(255, 119, 0)"><i class="fa-solid fa-meteor"></i></span>進球</a>
+            </div>
+
+            <!-- 疊球 -->
+            <div class="ball-overlap">
+              <div class=""><a href="javascript:void(0)" id="button_game_action_shortcut_2"><span
+                    style="font-size:6vw; color: rgb(0, 57, 123)"><i class="fa-solid fa-record-vinyl"></i></span>疊球</a>
+              </div>
+            </div>
+
+            <!-- 擊發 -->
+            <div class="ball-fired" id="button_game_action_shoot">
+              <div class=""><a href="javascript:void(0)"><span style="font-size:6vw; color: rgb(0, 57, 123)"><i
+                      class="fa-solid fa-crosshairs"></i></span>擊發</a>
+              </div>
+            </div>
+            <!-- 拉桿 -->
+            <div class="ball-pull">
+              <div class="" id="button_game_action_pull"><a href="javascript:void(0)"><span
+                    style="font-size:6vw; color: rgb(0, 57, 123)"><i class="fa-solid fa-fire"></i></span>往後拉</a>
+              </div>
+            </div>
+
+
+            <!-- 輸入案件 -->
+            <div>
+              <input type="text" id="sec" value="0.5" style="width: 100px;">
+            </div>
+          </div>
+          <!-- 娃娃機API按紐 end-->
+
+          <!-- pull range button -->
+          <div class="pullRangeButton d-flex justify-content-between">
+            <a href="javascript:void(0)" id="button_game_action_pull04">
+              <div><span style="font-size:6vw; color: rgb(141, 141, 141)"><i
+                    class="fa-solid fa-tablet-button"></i></span>
+                <span>0.4</span>
+              </div>
+            </a>
+            <a href="javascript:void(0)" id="button_game_action_pull05" data-value="0.5">
+              <div><span style="font-size:6vw; color:  rgb(141, 141, 141)"><i
+                    class="fa-solid fa-tablet-button"></i></span>
+                <span>0.5</span>
+              </div>
+            </a>
+            <a href="javascript:void(0)" id="button_game_action_pull06" data-value="0.6">
+              <div><span style="font-size:6vw; color: rgb(141, 141, 141)"><i
+                    class="fa-solid fa-tablet-button"></i></span>
+                <span>0.6</span>
+              </div>
+            </a>
+            <a href="javascript:void(0)" id="button_game_action_pull07" data-value="0.7">
+              <div><span style="font-size:6vw; color: rgb(141, 141, 141)"><i
+                    class="fa-solid fa-tablet-button"></i></span><span>0.7</span>
+              </div>
+            </a>
+            <a href="javascript:void(0)" id="button_game_action_pull08" data-value="0.8">
+              <div><span style="font-size:6vw; color:  rgb(141, 141, 141)"><i
+                    class="fa-solid fa-tablet-button"></i></span><span>0.8</span>
+              </div>
+            </a>
+            <a href="javascript:void(0)" id="button_game_action_pull09" data-value="0.9">
+              <div><span style="font-size:6vw; color:  rgb(141, 141, 141)"><i
+                    class="fa-solid fa-tablet-button"></i></span><span>0.9</span>
+              </div>
+            </a>
+            <a href="javascript:void(0)" id="button_game_action_pull10" data-value="1">
+              <div><span style="font-size:6vw; color:  rgb(141, 141, 141)"><i
+                    class="fa-solid fa-tablet-button"></i></span><span>1.0</span>
+              </div>
+            </a>
+            <a href="javascript:void(0)" id="button_game_action_pull11" data-value="1.1">
+              <div><span style="font-size:6vw; color:  rgb(141, 141, 141)"><i
+                    class="fa-solid fa-tablet-button"></i></span><span>1.1</span>
+              </div>
+            </a>
+
+            <a href="javascript:void(0)" id="button_game_action_pull12">
+              <div><span style="font-size:6vw; color:  rgb(141, 141, 141)"><i
+                    class="fa-solid fa-tablet-button"></i></span><span>1.2</span>
+              </div>
+            </a>
+
+          </div>
+          <!-- pull range button end-->
+
+          <div class="button-white"></div>
 
           <!-- 開機鈕 -->
           <div class="boot-module" style="display:none;">
@@ -183,6 +282,9 @@
                     class="fa-solid fa-power-off"></i></span></a>
             </div>
           </div>
+
+          <!-- 拉桿 -->
+          <div id="slider"></div>
 
           <!-- 計分API -->
 
@@ -216,7 +318,7 @@
           <audio controls src="/pinball-board/assets/開始音樂.mp3" id="startMusic" style="display:none;"></audio>
 
           <!-- 得分音樂1 -->
-          <audio controls src="/pinball-board/assets/德分音樂1.mp3" id="playMusic1" style="display:none;"></audio>
+          <audio controls src="/pinball-board/assets/得分音樂1.mp3" id="playMusic1" style="display:none;"></audio>
 
           <!-- 得分音樂2 -->
           <audio controls src="/pinball-board/assets/得分音樂2.mp3" id="playMusic2" style="display:none;"></audio>
@@ -236,10 +338,21 @@
           <!-- 加油喔 -->
           <audio controls src="/pinball-board/assets/加油喔-台語.mp3" id="cheerUpTai" style="display:none;"></audio>
 
+          <!-- price ring sounds -->
+          <audio controls src="/pinball-board/assets/priceRingSound.mp3" id="priceRingSound"
+            style="display:none;"></audio>
+
+          <!-- 90 points price sound -->
+          <audio controls src="/pinball-board/assets/90pointSound.mp3" id="nityPointSound"
+            style="display:none;"></audio>
+
           <!-- 計算開機次數 -->
           <div class="" id="bootNumber"></div>
           <!-- 計算開機次數 ends-->
           <!-- audio end -->
+
+          <!-- result_detail -->
+          <input type="text" class="form_control" id="result_detail" style="display:none;">
 
         </div>
         <!-- drag -->
@@ -257,9 +370,10 @@
 
       <script type="module" src="../main.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
       <script>
 
-
+       
         // 獲取所有點燈的元素
         const lights = document.querySelectorAll('.pointLight');
 
@@ -286,12 +400,18 @@
         const startMusic = document.getElementById('startMusic');
 
         //遊戲機資訊變數
-        const buttonInsertCoin = document.getElementById('button_insert_coin');
+        const buttonInsertCoin = document.getElementById('button_insert_coin');  //擊發
         const ticket = document.getElementById('ticket');
         const cointMusic = document.getElementById('cointMusic');
         const result_ball = document.querySelector('input[name="result_ball"]');
         const result_score = document.querySelector('input[name="result_score"]');
-        const pointTimeTicket = pointAmount.value * ticket.value;
+        let pointTimeTicket;
+        let pointAmountNotZero;  //當pointAmountNotZero還大於0的時候
+
+
+        //get price sound
+        const priceRingSound = document.getElementById('priceRingSound');
+        const nityPointSound = document.getElementById('nityPointSound');
 
         //打彈珠背景音樂
         const playMusic1 = document.getElementById('playMusic1');
@@ -302,6 +422,21 @@
 
         //遊戲結束四個字
         const finishGameSound = document.getElementById('finishGameSound');
+
+        //每顆球分數
+        const result_detail = document.getElementById('result_detail');
+
+
+
+        //press buttonInsertCoin to clean the pointTimeTicket
+        // buttonInsertCoin.addEventListener('click', pointTimeTicketNone);
+        // function pointTimeTicketNone() {
+        //   pointTimeTicket = '';
+        //   ticket.value = 0;
+
+        // };
+
+
 
 
         function lightStartFlash() {
@@ -317,12 +452,10 @@
               light.classList.add('pointLight-out1'); // 添加 pointLight-out1 class
             }, delay1);
 
-            // 設定 pointLight-out2 的延遲時間，延遲 5000 毫秒再執行
-
             const delay2 = 5000; // pointLight-out2延遲5000毫秒再執行
 
             setTimeout(() => {
-              light.classList.add('pointLight-out2'); // 添加 pointLight-out2 class
+              light.classList.add('pointLight-out2');
             }, delay2);
           });
         }
@@ -333,24 +466,24 @@
         //當偵測到分數不等於0時，執行firstGetpoint，而且只執行一次
         // 在頁面載入完成後直接觸發
 
-
+        //getResult()
         function handleResultScoreChange() {
           // 分數不是0也不是五的倍數
-          if (Number(result_ball.value) === 0 && Number(result_score.value) % 5 !== 0 && Number(result_score.value) !== 0) {
 
+          if (Number(result_ball.value) === 0 && Number(result_score.value) % 5 !== 0 && Number(result_score.value) !== 0) {
             lights.forEach(function (item) {
               item.classList.remove('firstGetpoint', 'pointLight-out1', 'pointLight-out2', 'highlight', 'nothighlight');
               item.classList.add('nothighlight');
             });
-
-
+            ticket.value = 0; //to visible ticket.value on the screen except for players
           } else if (Number(result_ball.value) === 0 && Number(result_score.value) % 5 === 0 && Number(result_score.value) !== 0) {
 
             //抓data-ticket的值
             const getPointId = document.getElementById(`pointLight${(result_score.value)}`);
             const ticketValue = getPointId.getAttribute('data-ticket');  //彩票值
-            ticket.value = ticketValue;  //將彩票值放入彩票欄位內
 
+            ticket.value = ticketValue;  //ticketValue有彩票值喔，但僅限於這個函式內
+            pointTimeTicket = ticketValue; //將彩票數(ticketValue)傳出去全域
 
             setTimeout(function () {    //這裡加上清除所有動畫樣式
 
@@ -359,18 +492,15 @@
                 if (item.id !== `pointLight${(result_score.value)}`) {
                   item.classList.remove('firstGetpoint', 'pointLight-out1', 'pointLight-out2', 'highlight', 'nothighlight', 'startlight');
                   item.classList.add('nothighlight');
-
                 } else {
                   item.classList.remove('firstGetpoint', 'pointLight-out1', 'pointLight-out2', 'highlight', 'nothighlight', 'startlight');
                   item.classList.add('highlight');
-
                 }
               });
             }, 1000);
 
-          }
 
-
+          };
           //避免得分燈亮後，例如15分，按開始之後燈號沒重新跑          
           lights.forEach(function (item) {
             item.classList.remove('firstGetpoint', 'pointLight-out1', 'pointLight-out2', 'highlight', 'nothighlight', 'startlight');
@@ -378,13 +508,6 @@
           });
 
         }
-
-
-
-
-
-
-        // playFinishSound();  //no interactive,所以傳到拉桿部分
 
         //按開機鈕自動播放
         const pressBoot = document.getElementById('pressBoot');
@@ -394,7 +517,6 @@
         pressBoot.addEventListener('click', function () {
           //倒數
           let countdown = 3;
-
           const countdownInterval = setInterval(function () {
             //將倒數加到球數的input內
             countdownElement.value = countdown;
@@ -403,12 +525,10 @@
             if (countdown < 0) {
               clearInterval(countdownInterval);
               countdownElement.value = ''; // 隱藏倒數元素
-
               playBootMusic();  //插入playBootMusic功能
 
             }
           }, 1000); // 每秒更新一次倒數
-
 
         })
 
@@ -469,117 +589,80 @@
 
 
 
-        //每投一次硬幣，局數+1
-        //設定不能連續在幾秒之內點選開始兩次 debounce
-        let coinCount;
+        //每按投幣一次，局數+1
 
-        buttonInsertCoin.addEventListener('click', function () {
+        //   buttonInsertCoin.addEventListener('click', function () {
+        //   cointMusic.play();  //播放投幣音樂
+        //   // coinCount++;
+        //   // pointAmount.value = coinCount; //增加投幣次數
+        //   pointAmount.value++; //增加投幣次數
+        //   console.log(`投幣之後的遊戲局數${pointAmount.value}`);
+        // });
+
+        //投幣鍵刪除，每按開始局數+1 **和下面監聽整合
+        buttonStartGame.addEventListener('click', function () {
           cointMusic.play();  //播放投幣音樂
-          let coinCount = 0;
-          coinCount++;
-          pointAmount.value = coinCount; //增加投幣次數
+          // coinCount++;
+          // pointAmount.value = coinCount; //增加投幣次數
+          pointAmount.value++; //增加投幣次數
           console.log(`投幣之後的遊戲局數${pointAmount.value}`);
-
-
-        })
+        });
 
         //result_ball每歸零一次，局數-1
 
         function setPointAmount() {
 
-
           //歸零條件:球數為0，按開始按鍵之後，局數還有剩，遊戲結束音效播放完才歸零
           if (Number(result_ball.value) === 0 && pointAmount.value > 0 && Number(result_ball.value) % 5 === 0) {
             //和上面的coinCount記憶體空間不同
-            // pointAmount.value = 0;  //不用pointAmount.value-- 是避免和上面的 pointAmount.value = coinCount;不同步
-            // coinCount === 0;
 
-            //彩票數& 投錢數相乘
-            ticket.value = pointTimeTicket;
-            //播放中獎音樂 
-
-            //播放5倍的分數音樂
-            
-            //幾張彩票就響幾聲
-
-            pointAmount.value = pointAmount.value - coinCount;
+            pointAmountNotZero = pointAmount.value;
+            //播放中獎音樂 & 暫停背景音樂
+            priceRingSound.play();
+            playMusic1.pause();
+            playMusic2.pause();
+            // pointAmount.value = pointAmount.value - coinCount;
+            pointAmount.value = 0;
             console.log(`條件式內的遊戲局數${pointAmount.value}`);
-            console.log(`遊戲局數被歸零`);
+            //播放中獎音樂 & 暫停背景音樂            
             finishGameSound.play();  //遊戲結束四個字播放
             console.log("pointAmount歸零且播放遊戲結束");
-            return;   //退出函式
+            // coinCount = 0; //put here is most suitable, because pointAmount.value is already been minusified
+            return;
+          } else if (Number(result_ball.value) === 0 && pointAmount.value > 0 && Number(result_ball.value) % 5 !== 0) {
+            // pointAmount.value = pointAmount.value - coinCount;
+            pointAmount.value = 0;
+            //沒有播放中獎音樂 & 暫停背景音樂
+            playMusic1.pause();
+            playMusic2.pause();
+            finishGameSound.play();
+            ticket.value = 0; //to avoid the next play show the ticket number last time
+            // coinCount = 0;
+            return;
           } else {
-            console.log(`ticket value ${ticket.value}`);
-            console.log(`條件式內的遊戲局數${pointAmount.value}`);
             console.log("pointAmount沒有歸零");
           };
-
         }
 
 
-
-        //遊戲結束四個字播放
-        // function playFinishSound() {
-        //   // 分數不是0也不是五的倍數
-        //   if (Number(result_ball.value) === 0 && Number(result_score.value) % 5 !== 0 && Number(pointAmount.value) === 0) {
-
-        //     finishGameSound.play();
-        //     console.log("有執行遊戲結束音樂1");
-        //     console.log(`pointAmount.value1${Number(pointAmount.value)}`);
-
-        //   } else if (Number(result_ball.value) === 0 && Number(result_score.value) % 5 === 0 && Number(pointAmount.value) === 0) {
-
-        //     finishGameSound.play();
-        //     console.log("有執行遊戲結束音樂2");
-        //     console.log(`pointAmount.value2${Number(pointAmount.value)}`);
-
-        //   };
-        // };
-
-
         function watchStart() {
-
-          setInterval(function () {
+          //有分數就不要閃爍開始燈，沒分數再閃鑠開始燈
+          if (Number(result_ball.value) !== 0) {
             startButtonSvg.classList.remove('shinning', 'notshinning');
             startButtonSvg.classList.add('notshinning');
-            console.log("球數不等於0時不閃燈-點擊開始鈕進行監聽");
-          }, 500);
-
-          if (Number(result_ball.value) === 0 && Number(result_score.value) % 5 !== 0) {
-            startButtonSvg.classList.remove('notshinning');
-            startButtonSvg.classList.add('shinning');
-            clearInterval();
-
-          } else if (Number(result_ball.value) === 0 && Number(result_score.value) % 5 === 0) {
-
-            clearInterval();
-            startButtonSvg.classList.remove('notshinning');
-            startButtonSvg.classList.add('shinning');
-
-
-          } else if (Number(result_ball.value) !== 0) {
-            //當球打完的時，開始鍵開始閃燈,延遲秒數執行，避免遭求滑落時影響數值
+          } else if (Number(result_ball.value) === 0) {
             startButtonSvg.classList.remove('shinning', 'notshinning');
-            startButtonSvg.classList.add('notshinning');
-            console.log("球數不等於0時不閃燈");
-
-          }
-
+            startButtonSvg.classList.add('shinning');
+          };
         };
 
 
         buttonStartGame.addEventListener('click', function () {
 
-          // startButtonSvg.classList.remove('shinning', 'notshinning');
-          // startButtonSvg.classList.add('notshinning');
-          // console.log("球數不等於0時不閃燈-點擊開始鈕進行監聽");
-
-
           //點擊開始後彩票數歸零 & 按開始後將只有亮燈號分數的狀態取消
-          setTimeout(function () {
-            ticket.value = 0;
-
-          }, 2000);  //等候三秒再執行，就不會受到result_score影響
+          // setTimeout(function () {
+          //   ticket.value = 0;
+          // }, 2000);  //等候三秒再執行，就不會受到result_score影響
 
           // 暫停和歸零 開機音樂 的效果
           bootMusic1_1.pause();
@@ -594,21 +677,24 @@
 
           startMusic.play();   //播放開始音樂
 
-          //點擊開始後數據reset
-
-          //開始13秒後，自動播放打彈珠時的背景音樂1
+          //開始後，自動播放打彈珠時的背景音樂1
           startMusic.onended = function () {
-            setTimeout(function () {
-              playMusic1.play();
-            }, 13000);
+            startMusic.currentTime = 0;
+            playMusic1.play();
           };
 
-          //打彈珠時的背景音樂2
+          //背景音樂2
           playMusic1.onended = function () {
+            playMusic1.currentTime = 0;
+            playMusic2.play();
+          }
+          //連續播放背景音樂2
+          playMusic2.onended = function () {
+            playMusic2.currentTime = 0;
             playMusic2.play();
           }
 
-          // 點擊開始>閃爍燈號樣式
+          // 點擊開始:閃爍燈號樣式
           //先清除原有燈號樣式
           lights.forEach(function (item) {
             item.classList.remove('firstGetpoint', 'pointLight-out1', 'pointLight-out2', 'highlight', 'startlight', 'nothighlight'); //加這一行，其他動畫不會繼續跑出來
@@ -620,24 +706,25 @@
 
 
         //拉桿            
-        const bar = document.getElementById('button_play_game');
-        const barImgLong = document.getElementById('barImgLong');
-        const barImgShort = document.getElementById('barImgShort');
+        // const bar = document.getElementById('button_play_game');  //更改
 
-        bar.addEventListener('click', function () {
+        // const barImgLong = document.getElementById('barImgLong');
+        // const barImgShort = document.getElementById('barImgShort');
 
-          //拉桿縮放
-          barImgLong.style.display = 'block';
-          setInterval(function () {
-            barImgLong.style.display = 'none';
-            barImgShort.style.display = 'block';
-          }, 600);
-          barImgShort.style.display = 'none';
+        // buttonInsertCoin.addEventListener('click', function () {
 
-          //撥放拉桿聲音
-          barSound.play();
+        //   //拉桿縮放
+        //   barImgLong.style.display = 'block';
+        //   setInterval(function () {
+        //     barImgLong.style.display = 'none';
+        //     barImgShort.style.display = 'block';
+        //   }, 600);
+        //   barImgShort.style.display = 'none';
 
-        })
+        //   //撥放拉桿聲音
+        //   barSound.play();
+
+        // })
 
 
 
@@ -675,12 +762,14 @@
         })
 
 
-        //拉桿-手機震動
-        // 檢查是否支援 Vibration API
-        // 手機點擊時震動 400 毫秒
-        bar.addEventListener("click", function () {
+        //拉桿-手機震動       
+        // 手機點擊時震動 400 毫秒 button_insert_coin擊發
+        buttonInsertCoin.addEventListener("click", function () {
           navigator.vibrate(400);
+          barSound.play();
         });
+
+
 
         //充電模擬
         const chargeRect = document.getElementById("chargeRect");
@@ -717,6 +806,8 @@
         };
 
 
+        //按多久會跑多長
+        //Elapsed time can be customized.
         chargeRect.addEventListener("mousedown", mousedown);
 
         window.addEventListener("mouseup", function mouseup(e) {
@@ -727,16 +818,32 @@
 
           console.log(`mouseupTime${mouseupTime}`);
           console.log(`Elapsed time: ${mouseupMilliseconds} milliseconds`);
+          //show the number on charge
+
           //mousedownTime -mousedown startTime
           console.log(e);
           //沒作用
-          if (mouseupMilliseconds < 2000) {
+          if (mouseupMilliseconds >= 1500 && mouseupMilliseconds < 2000) {
             console.log("按下秒數小於2000毫秒");
             console.log(`Elapsed time:${mouseupMilliseconds}`);
-            chargeValue.setAttribute("width", `${mouseUpClickTime}%`);
+            // chargeValue.setAttribute("width", `${mouseUpClickTime}%`); //below 2 seconds, width can be changed.
+            chargeValue.setAttribute("width", "90%");
+            //放置在bar上
+
             console.log(`mouseup clickTime${mouseUpClickTime}`);
+          } else if (mouseupMilliseconds >= 1000 && mouseupMilliseconds < 1500) {
+            chargeValue.setAttribute("width", "80%");
+
+          } else if (mouseupMilliseconds >= 500 && mouseupMilliseconds < 1000) {
+            chargeValue.setAttribute("width", "70%");
+
+          } else if (mouseupMilliseconds >= 0 && mouseupMilliseconds < 500) {
+            chargeValue.setAttribute("width", "60%");
+
           } else {
             console.log("按下秒數大於2000毫秒");
+            chargeValue.setAttribute("width", "100%");
+
             console.log(`mouseup clickTime${mouseUpClickTime}`);
 
           };
@@ -744,10 +851,10 @@
           clearTimeout(mouseTimer);
 
           //mouseup完成後電力消失
-          chargeValue.classList.add("transition-3");
+          // chargeValue.classList.add("transition-3");
+
+          //放開後擊發自動歸零
           chargeValue.setAttribute("width", "0%");
-
-
 
         });
 
@@ -755,10 +862,42 @@
 
 
 
-        //串接ajax功能
+        //文字轉語音
+        //result_detail唱頌        
+        function textToVoice() {
+          const numbersString = result_detail.value;
+          const numbersArray = numbersString
+            .split(";")
+            .filter((num) => num !== "")
+            .map((num) => parseInt(num));
+          console.log(numbersArray); // 输出: [2, 3, 6, 11, 17]
+
+          // 获取数组中最后一个数字
+          const lastNumber = numbersArray[numbersArray.length - 1];
+
+          // 将数组中的数字连接成一个字符串，每个数字之间用空格分隔
+          const utter = new SpeechSynthesisUtterance();
+          // utter.text = numbersArray.join(" ");
+          utter.text = lastNumber;
+
+          // 定义全局的 speak 函数
+          function speak() {
+            const synth = window.speechSynthesis;
+            // 使用文本转语音方法朗读字符串形式的数字
+            synth.speak(utter);
+            console.log("執行分數轉語音");
+          };
+        };
+
+        //只要監聽球數有變化，就可以 promise callback
+
+
+
+        //ajax
         const BIZLUTION_RESTFUL_API_URL = "http://61.222.52.130:60081/pinball/"
         $(document).ready(function () {
 
+          //擊發歸零
           function insertCoin() {
             $.ajax({
               url: BIZLUTION_RESTFUL_API_URL + 'insert_coin',
@@ -784,9 +923,235 @@
             })
           }
 
-          function playGame() {
+
+          //拉桿 id="sec"
+          function gameActionPull() {
+            let sec = $("#sec").val()
             $.ajax({
-              url: BIZLUTION_RESTFUL_API_URL + 'play_game',
+              url: BIZLUTION_RESTFUL_API_URL + 'game_action_pull?sec=' + sec,
+              async: false,
+              error: function (result) {
+              },
+              success: function (result) {
+
+              }
+            })
+          }
+
+          //add myself pull range
+          function gameActionPull04() {
+            setTimeout(function () {
+              $.ajax({
+                url: BIZLUTION_RESTFUL_API_URL + 'game_action_pull?sec=0.4',
+                async: false,
+                error: function (result) {
+                },
+                success: function (result) {
+                }
+              })
+            }, 500)
+            setTimeout(function () {
+              $.ajax({
+                url: BIZLUTION_RESTFUL_API_URL + 'game_action_shoot',
+                async: false,
+                error: function (result) {
+                },
+                success: function (result) {
+                }
+              })
+            }, 1000);
+          }
+
+
+
+          function gameActionPull05() {
+            setTimeout(function () {
+              $.ajax({
+                url: BIZLUTION_RESTFUL_API_URL + 'game_action_pull?sec=0.5',
+                async: false,
+                error: function (result) {
+                },
+                success: function (result) {
+                }
+              })
+            }, 500)
+            setTimeout(function () {
+              $.ajax({
+                url: BIZLUTION_RESTFUL_API_URL + 'game_action_shoot',
+                async: false,
+                error: function (result) {
+                },
+                success: function (result) {
+                }
+              })
+            }, 1100);
+          }
+
+          function gameActionPull06() {
+            setTimeout(function () {
+              $.ajax({
+                url: BIZLUTION_RESTFUL_API_URL + 'game_action_pull?sec=0.6',
+                async: false,
+                error: function (result) {
+                },
+                success: function (result) {
+                }
+              })
+            }, 500)
+            setTimeout(function () {
+              $.ajax({
+                url: BIZLUTION_RESTFUL_API_URL + 'game_action_shoot',
+                async: false,
+                error: function (result) {
+                },
+                success: function (result) {
+                }
+              })
+            }, 1200);
+          }
+
+          function gameActionPull07() {
+            setTimeout(function () {
+              $.ajax({
+                url: BIZLUTION_RESTFUL_API_URL + 'game_action_pull?sec=0.7',
+                async: false,
+                error: function (result) {
+                },
+                success: function (result) {
+                }
+              })
+            }, 500)
+            setTimeout(function () {
+              $.ajax({
+                url: BIZLUTION_RESTFUL_API_URL + 'game_action_shoot',
+                async: false,
+                error: function (result) {
+                },
+                success: function (result) {
+                }
+              })
+            }, 1300);
+          }
+
+          function gameActionPull08() {
+            setTimeout(function () {
+              $.ajax({
+                url: BIZLUTION_RESTFUL_API_URL + 'game_action_pull?sec=0.8',
+                async: false,
+                error: function (result) {
+                },
+                success: function (result) {
+                }
+              })
+            }, 500)
+            setTimeout(function () {
+              $.ajax({
+                url: BIZLUTION_RESTFUL_API_URL + 'game_action_shoot',
+                async: false,
+                error: function (result) {
+                },
+                success: function (result) {
+                }
+              })
+            }, 1400);
+          }
+
+          function gameActionPull09() {
+            setTimeout(function () {
+              $.ajax({
+                url: BIZLUTION_RESTFUL_API_URL + 'game_action_pull?sec=0.9',
+                async: false,
+                error: function (result) {
+                },
+                success: function (result) {
+                }
+              })
+            }, 500)
+            setTimeout(function () {
+              $.ajax({
+                url: BIZLUTION_RESTFUL_API_URL + 'game_action_shoot',
+                async: false,
+                error: function (result) {
+                },
+                success: function (result) {
+                }
+              })
+            }, 1500);
+          }
+
+
+          function gameActionPull10() {
+            setTimeout(function () {
+              $.ajax({
+                url: BIZLUTION_RESTFUL_API_URL + 'game_action_pull?sec=1',
+                async: false,
+                error: function (result) {
+                },
+                success: function (result) {
+                }
+              })
+            }, 500)
+            setTimeout(function () {
+              $.ajax({
+                url: BIZLUTION_RESTFUL_API_URL + 'game_action_shoot',
+                async: false,
+                error: function (result) {
+                },
+                success: function (result) {
+                }
+              })
+            }, 1600);
+          }
+
+          function gameActionPull11() {
+            setTimeout(function () {
+              $.ajax({
+                url: BIZLUTION_RESTFUL_API_URL + 'game_action_pull?sec=1.1',
+                async: false,
+                error: function (result) {
+                },
+                success: function (result) {
+                }
+              })
+            }, 500)
+            setTimeout(function () {
+              $.ajax({
+                url: BIZLUTION_RESTFUL_API_URL + 'game_action_shoot',
+                async: false,
+                error: function (result) {
+                },
+                success: function (result) {
+                }
+              })
+            }, 1700);
+          }
+
+          function gameActionPull12() {
+            setTimeout(function () {
+              $.ajax({
+                url: BIZLUTION_RESTFUL_API_URL + 'game_action_pull?sec=1.2',
+                async: false,
+                error: function (result) {
+                },
+                success: function (result) {
+                }
+              })
+            }, 500)
+            setTimeout(function () {
+              $.ajax({
+                url: BIZLUTION_RESTFUL_API_URL + 'game_action_shoot',
+                async: false,
+                error: function (result) {
+                },
+                success: function (result) {
+                }
+              })
+            }, 1800);
+          }
+
+          function gameActionShoot() {
+            $.ajax({
+              url: BIZLUTION_RESTFUL_API_URL + 'game_action_shoot',
               async: false,
               error: function (result) {
               },
@@ -797,13 +1162,40 @@
           }
 
 
+          function gameActionShortcut(shortcut) {
+
+            $.ajax({
+              url: BIZLUTION_RESTFUL_API_URL + 'game_action_shortcut?shortcut=' + shortcut,
+              async: false,
+              error: function (result) {
+              },
+              success: function (result) {
+
+              }
+            })
+          }
+
+          //I don't know
+          function setQuality() {
+            let q = $("#quality").val()
+            $.ajax({
+              url: BIZLUTION_RESTFUL_API_URL + 'set_quality?q=' + q,
+              async: false,
+              error: function (result) {
+              },
+              success: function (result) {
+
+              }
+            })
+          }
 
 
           function getResult() {
+
             $.ajax({
               dataType: "json",
               url: BIZLUTION_RESTFUL_API_URL + 'get_result',
-              async: false,
+              async: true,
               error: function (result) {
               },
               success: function (result) {
@@ -818,12 +1210,12 @@
                 console.log(remainingBalls);
                 document.getElementById('result_ball').value = remainingBalls;
 
-
                 //得分球亮燈功能
                 handleResultScoreChange();
 
               }
             })
+
           }
 
 
@@ -881,49 +1273,148 @@
           }
 
 
+
           $('#button_insert_coin').on('click', function (event) {
             insertCoin()
-
           })
 
           $('#button_start_game').on('click', function (event) {
-            startGame();
+            startGame()
+          })
+
+          //pull range
+          $('#button_game_action_pull').on('click', function (event) {
+            gameActionPull()
+          })
+
+          $('#button_game_action_pull04').on('click', function (event) {
+            gameActionPull04()
+          })
+
+          $('#button_game_action_pull05').on('click', function (event) {
+            gameActionPull05()
+          })
+
+          $('#button_game_action_pull06').on('click', function (event) {
+            gameActionPull06()
+          })
+
+          $('#button_game_action_pull07').on('click', function (event) {
+            gameActionPull07()
+          })
+
+          $('#button_game_action_pull08').on('click', function (event) {
+            gameActionPull08()
+          })
+
+          $('#button_game_action_pull09').on('click', function (event) {
+            gameActionPull09()
+          })
+
+          $('#button_game_action_pull10').on('click', function (event) {
+            gameActionPull10()
+          })
+
+          $('#button_game_action_pull11').on('click', function (event) {
+            gameActionPull11()
+          })
+
+          $('#button_game_action_pull12').on('click', function (event) {
+            gameActionPull12()
+          })
+
+          $('#button_game_action_shoot').on('click', function (event) {
+            gameActionShoot()
           })
 
 
-          $('#button_play_game').on('click', function (event) {
-            playGame()
+          $('#button_game_action_shortcut_1').on('click', function (event) {
+            gameActionShortcut(1)
+          })
+
+
+
+          $('#button_game_action_shortcut_2').on('click', function (event) {
+            gameActionShortcut(2)
           })
 
 
 
           let timerId;
+          let timerId2;
+          let timerId3;
 
           function foo() {
-            getResult();
-            getPointAmount();
-            timerId = setTimeout(foo, 2000);
+            getResult();  //handleResultScoreChange & textToVoice
 
+            //later every two seconds excute the foo loop
+            timerId = setTimeout(foo, 2000);
             console.log("執行foo");
           };
+          foo(); //跟getResult有關系的: 亮分數燈 & 有彩票數
+
+
+          function zoo() {
+            getPointAmount();   //setPointAmount
+            timerId3 = setTimeout(zoo, 1000);
+            console.log("執行zoo");
+          }  //跟getPointAmount有關係:遊戲結束音樂 & 按投幣後投幣鍵變成0
+
+          function qoo() {
+            watchStartNow();
+            //500milliseconds can change shinning to notshinning faster
+            timerId2 = setTimeout(qoo, 1000);
+            console.log("執行qoo");
+          };
+
           buttonStartGame.addEventListener("click", function () {
             // deplay 9 seconds to avoid the mistake points in the beginning.
-            setTimeout(foo, 9000);
+            setTimeout(zoo, 9000);
             //不小心連點兩次開始，會先跑出遊戲結束
+            qoo();
+            console.log("執行qoo");
           });
-
+          //投幣和開始間隔拉長
+          //按開始鍵後不能投幣
+          //拉桿觸發foo比較複雜
           function fooRemove() {
             clearTimeout(timerId);
-
             console.log("移除foo");
           };
 
+          function zooRemove() {
+            clearTimeout(timerId3);
+            console.log("移除zoo");
+          };
+
+
+          // buttonInsertCoin.addEventListener("click", zooRemove);
           buttonInsertCoin.addEventListener("click", fooRemove);
+
 
         });
 
 
+        // 拉桿123
+        import noUiSlider from 'nouislider';
 
+        var slider = document.querySelector('.sliders');
+        var colors = [0, 0, 0];
+
+
+       
+        noUiSlider.create(slider, {
+          start: 127,
+          connect: [true, false],
+          orientation: "vertical",
+          range: {
+            'min': 0,
+            'max': 255
+          },
+          format: wNumb({
+            decimals: 0
+          })
+        });
 
 
 

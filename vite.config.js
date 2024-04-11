@@ -3,8 +3,9 @@ import { ViteEjsPlugin } from 'vite-plugin-ejs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { glob } from 'glob';
+import noUiSlider from 'nouislider';
 
-import liveReload from 'vite-plugin-live-reload';
+// import liveReload from 'vite-plugin-live-reload';
 
 function moveOutputPlugin() {
   return {

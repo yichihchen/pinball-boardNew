@@ -4,9 +4,7 @@
 
 @import './utils/base.scss';
 @import './utils/mixin.scss';
-
-
-
 @import './pages/index.scss';
-
 @import "../../node_modules/bootstrap";
+@import "/node_modules/nouislider";
+@import "./utils/nouislidercss.scss";
