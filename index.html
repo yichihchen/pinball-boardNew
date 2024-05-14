@@ -124,7 +124,7 @@
           <!-- 娃娃機中間 -->
           <div class="row middle justify-content-center m-0 position-relative">
             <div class="middle-frame text-center p-0 ">
-              <!-- <img class="middle-img" id="middleImg" src="http://61.222.52.130:60081/camera/0/stream" /> -->
+              <!-- <img class="middle-img" id="middleImg" src="https://bizlution.pingguoxingren.com:60081/camera/0/stream" /> -->
               <div id="viewer"><canvas width="400" height="480" style="background-color: rgb(13, 14, 27);"></canvas>
               </div>
               <img class="imgFalse" id="imgFalse" src="/pinball-board/assets/baby-ec42d771.jpg" style="display:none;" />
@@ -194,7 +194,7 @@
           <!-- Bar noUiSlider-->
           <div class="example mt-4" id="example">
             <div id="slider-format"></div>
-            <!-- <input title="Formatted number" id="input-format"> -->
+            <input title="Formatted number" id="input-format" style="display:none;">
           </div>
 
           <!-- script modal button -->
@@ -977,9 +977,8 @@
           }
         };
 
-        result_detail.addEventListener("change", speekToVoice);  //here is very strange
+        result_detail.addEventListener("change", speekToVoice);  //it is very strange
 
-        //Every server know one of the client has pressed start.
 
         //Script to Actions
         let test_script = '### Example' + '\r' +
@@ -997,11 +996,12 @@
           'LOOP2:' + '\r' +
           'STOP 1' + '\r' +
           'SHOOT' + '\r' +
-          'STOP 10' + '\r' +
-          'SHOOT' + '\r';
+          'STOP 10' + '\r'
+        'SHOOT' + '\r';
 
-        $('#script_editor').val(test_script)
+        document.getElementById('script_editor').value = test_script;
 
+        // 如果成功了就執行setTImeout(resolve, ms)
         function sleep(ms) {
           return new Promise((resolve) => {
             setTimeout(resolve, ms);
@@ -1405,12 +1405,12 @@
             });
           });
         }
-        executeScript(script1); //add to avoid baby picture???
+
 
 
 
         //ajax
-        const BIZLUTION_RESTFUL_API_URL = "http://61.222.52.130:60081/pinball/"
+        const BIZLUTION_RESTFUL_API_URL = "https://bizlution.pingguoxingren.com:60081/pinball/"
         $(document).ready(function () {
 
           //擊發歸零
@@ -2096,8 +2096,10 @@
         playerElement.appendChild(window.player.canvas)
         // Websocket
         var wsUri = window.location.protocol.replace(/http/, 'ws') + '//' + window.location.hostname + ':9000'
-        var wsUri = 'ws://192.168.1.59/stream/0'
-        var wsUri = 'ws://61.222.52.130:60082/stream/0'
+        //var wsUri ='ws://192.168.1.59:8000/stream/0'
+        var wsUri = 'wss://bizlution.pingguoxingren.com:60082'
+        //var wsUri = 'ws://192.168.1.59:9000'
+
         var ws = new WebSocket(wsUri)
         ws.binaryType = 'arraybuffer'
         ws.onopen = function (e) {
