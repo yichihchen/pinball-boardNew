@@ -14,8 +14,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.css" />
 
   <title>index</title>
-  <script type="module" crossorigin src="/pinball-board/assets/index-5352dd8b.js"></script>
-  <link rel="stylesheet" href="/pinball-board/assets/index-7a954094.css">
+  <script type="module" crossorigin src="/pinball-board/assets/index-fe6d4af9.js"></script>
+  <link rel="stylesheet" href="/pinball-board/assets/index-89bb7e87.css">
 </head>
 
 <body>
@@ -24,52 +24,6 @@
         <div class="drag" id="drag">
           <!-- board -->
           <div class="board p-0 position-relative" id="board">
-
-            <!-- modal button -->
-            <button type="button" class="btn btn-primary enterscriptButton" data-bs-toggle="modal"
-              data-bs-target="#exampleModal" data-bs-whatever="@mdo">Enter Script</button>
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-              aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Enter Script</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                    <form>
-                      <div class="mb-3">
-                        <p>Please upload the script</p>
-                        <button class="btn btn-primary" id="button_upload_script">Upload Script</button>
-                        <select class="form-control" id="script_file_select">
-                          <option value="/data/script/upload/example1.txt">example1.txt</option>
-                          <option value="/data/script/upload/example2.txt">example2.txt</option>
-                        </select>
-                        <div class="d-flex align-items-center">
-                          <!--scripttext  scriptsave -->
-                          <!-- <input type="text" class="form-control scripttext" id="recipient-name"><a
-                            href="javascript:void(0)" id="scriptadd"><i class="fa-solid fa-plus"></i></a> -->
-                          <textarea id="story" name="story" rows="5" cols="33"></textarea>
-                        </div>
-
-                        <!--scriptlist -->
-                        <div class="modal-footer">
-
-                          <button class="btn btn-primary" id="button_scripts">Scripts</button>
-
-                          <button class="btn btn-primary btn-small" id="button_script_run">Run</button>
-                          <button class="btn btn-primary btn-small" id="button_script_stop">Stop(自己玩)</button>
-                          <button class="btn btn-primary btn-small" id="button_script_step">Step</button>
-                          <button class="btn btn-primary btn-small" id="button_script_empty">Empty</button>
-                          <!-- stop the script content -->
-                          <button type="button" class="btn btn-secondary">Play yourself</button>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
 
 
             <!-- 上方閃光 -->
@@ -204,48 +158,102 @@
           <!-- 娃娃機下半部 end-->
 
           <!-- 娃娃機API按紐 -->
-          <div class="d-flex">
-            <!-- 投幣 -->
-            <div class="insertCoin" style="display:none">
+          <!-- <div class="d-flex"> -->
+          <!-- 投幣 -->
+          <!-- <div class="insertCoin" style="display:none">
               <a href="javascript:void(0)" id="button_insert_coin"><span
                   style="font-size:6vw; color: rgb(255, 119, 0)"><i class="fa-solid fa-coins"></i></span>投幣</a>
-            </div>
-            <!-- 進球 -->
-            <div class="ball-in">
+            </div> -->
+          <!-- 進球 -->
+          <!-- <div class="ball-in">
               <a href="javascript:void(0)" id="button_game_action_shortcut_1"><span
                   style="font-size:6vw; color: rgb(255, 119, 0)"><i class="fa-solid fa-meteor"></i></span>進球</a>
-            </div>
+            </div> -->
 
-            <!-- 疊球 -->
-            <div class="ball-overlap">
+          <!-- 疊球 -->
+          <!-- <div class="ball-overlap">
               <div class=""><a href="javascript:void(0)" id="button_game_action_shortcut_2"><span
                     style="font-size:6vw; color: rgb(0, 57, 123)"><i class="fa-solid fa-record-vinyl"></i></span>疊球</a>
               </div>
-            </div>
+            </div> -->
 
-            <!-- 擊發 -->
-            <div class="ball-fired" id="button_game_action_shoot">
+          <!-- 擊發 -->
+          <!-- <div class="ball-fired" id="button_game_action_shoot">
               <div class=""><a href="javascript:void(0)"><span style="font-size:6vw; color: rgb(0, 57, 123)"><i
                       class="fa-solid fa-crosshairs"></i></span>擊發</a>
               </div>
-            </div>
-            <!-- 拉桿 -->
-            <div class="ball-pull">
+            </div> -->
+          <!-- 拉桿 -->
+          <!-- <div class="ball-pull">
               <div class="" id="button_game_action_pull"><a href="javascript:void(0)"><span
                     style="font-size:6vw; color: rgb(0, 57, 123)"><i class="fa-solid fa-fire"></i></span>往後拉</a>
               </div>
+            </div> -->
+
+
+          <!-- Bar noUiSlider-->
+          <div class="example mt-4" id="example">
+            <div id="slider-format"></div>
+            <!-- <input title="Formatted number" id="input-format"> -->
+          </div>
+
+          <!-- script modal button -->
+          <div class="row mt-4">
+            <div class="col-6">
+              <div class="row">
+                <div class="col-6">
+                  <button class="btn btn-primary btn-small" id="button_script_run">Run</button>
+                  <button class="btn btn-primary btn-small" id="button_script_stop">Stop</button>
+                  <button class="btn btn-primary btn-small" id="button_script_step">Step</button>
+                  <button class="btn btn-primary btn-small" id="button_script_empty">Empty</button>
+                </div>
+
+                <div class="col-4">
+                  <select class="form-control" id="script_file_select">
+                  </select>
+                </div>
+
+                <div class="col-2">
+                  <button class="btn btn-primary btn-small" id="button_script_load">Load</button>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-12">
+                  <textarea class="form-control" id="script_editor" rows="6" cols="50"></textarea>
+                </div>
+              </div>
             </div>
+            <div class="col-6">
+              <div class="row">
+                <div class="col-2">
+                  <button class="btn btn-primary btn-small" id="button_log_clear">Clear</button>
+                </div>
 
+                <div class="col-2">
+                  <button class="btn btn-primary btn-small" id="button_log_copy">Copy</button>
+                </div>
 
-            <!-- 輸入案件 -->
-            <div>
-              <input type="text" id="sec" value="0.5" style="width: 100px;">
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-12">
+                  <textarea id="output" class="form-control" rows="6" cols="50" readonly=""></textarea>
+                </div>
+              </div>
             </div>
           </div>
-          <!-- 娃娃機API按紐 end-->
 
-          <!-- pull range button -->
-          <div class="pullRangeButton d-flex justify-content-between">
+
+          <!-- 輸入案件 -->
+          <div>
+            <input type="text" id="sec" value="0.5" style="width: 100px;">
+          </div>
+        </div>
+        <!-- 娃娃機API按紐 end-->
+
+        <!-- pull range button -->
+        <!-- <div class="pullRangeButton d-flex justify-content-between">
             <a href="javascript:void(0)" id="button_game_action_pull04">
               <div><span style="font-size:6vw; color: rgb(141, 141, 141)"><i
                     class="fa-solid fa-tablet-button"></i></span>
@@ -314,119 +322,108 @@
               </div>
             </a>
 
+          </div> -->
+        <!-- pull range button end-->
+
+
+
+
+        <div class="button-white"></div>
+
+        <!-- 開機鈕 -->
+        <div class="boot-module" style="display:none;">
+          <p>開機</p>
+          <div class="boot-button"><a href="javascript:void(0)" id="pressBoot"><span
+                style="font-size:2rem; color: rgba(18, 211, 1, 0.662)"><i class="fa-solid fa-power-off"></i></span></a>
           </div>
-          <!-- pull range button end-->
-
-          <!-- 拉桿 -->
-          <div class="example mt-4" id="example">
-            <div class="" id="slider-format"></div>
-
-            <input title="Formatted number" id="input-format">
-          </div>
-
-
-
-          <div class="button-white"></div>
-
-          <!-- 開機鈕 -->
-          <div class="boot-module" style="display:none;">
-            <p>開機</p>
-            <div class="boot-button"><a href="javascript:void(0)" id="pressBoot"><span
-                  style="font-size:2rem; color: rgba(18, 211, 1, 0.662)"><i
-                    class="fa-solid fa-power-off"></i></span></a>
-            </div>
-          </div>
-
-          <!-- 關機鍵 -->
-          <div class="shutdown-module" style="display:none;">
-            <p>關機</p>
-            <div class="shutdown-button"><a href="javascript:void(0)" id="pressShutdown"><span
-                  style="font-size:2rem; color: rgba(0, 129, 215, 0.747)"><i
-                    class="fa-solid fa-power-off"></i></span></a>
-            </div>
-          </div>
-
-
-
-
-          <!-- 計分API -->
-
-          <!-- audio -->
-          <!-- 開機音樂 -->
-          <audio controls src="/pinball-board/assets/鼠來鼠趣開機音樂1-完整一小段.mp3" id="bootMusic1_1"
-            style="display:none;"></audio>
-          <audio controls src="/pinball-board/assets/鼠來鼠趣開機音樂1-完整一小段(不含前面).mp3" id="bootMusic1_2"
-            style="display:none;"></audio>
-          <audio controls src="/pinball-board/assets/鼠來鼠趣開機音樂1-完整一小段(不含前面).mp3" id="bootMusic1_3"
-            style="display:none;"></audio>
-
-          <audio controls src="/pinball-board/assets/鼠來鼠趣開機音樂2-完整一小段.mp3" id="bootMusic2_1"
-            style="display:none;"></audio>
-          <audio controls src="/pinball-board/assets/鼠來鼠趣開機音樂2-完整一小段(不含前面).mp3" id="bootMusic2_2"
-            style="display:none;"></audio>
-          <audio controls src="/pinball-board/assets/鼠來鼠趣開機音樂2-完整一小段(不含前面).mp3" id="bootMusic2_3"
-            style="display:none;"></audio>
-
-          <audio controls src="/pinball-board/assets/鼠來鼠趣開機音樂3-完整一小段.mp3" id="bootMusic3_1"
-            style="display:none;"></audio>
-          <audio controls src="/pinball-board/assets/鼠來鼠趣開機音樂3-完整一小段(不含前面).mp3" id="bootMusic3_2"
-            style="display:none;"></audio>
-          <audio controls src="/pinball-board/assets/鼠來鼠趣開機音樂3-完整一小段(不含前面).mp3" id="bootMusic3_3"
-            style="display:none;"></audio>
-
-          <!-- 投幣音樂 -->
-          <audio controls src="/pinball-board/assets/投幣音樂.mp3" id="cointMusic" style="display:none;"></audio>
-
-          <!-- 開始音樂 -->
-          <audio controls src="/pinball-board/assets/開始音樂.mp3" id="startMusic" style="display:none;"></audio>
-
-          <!-- 得分音樂1 -->
-          <audio controls src="/pinball-board/assets/得分音樂1.mp3" id="playMusic1" style="display:none;"></audio>
-
-          <!-- 得分音樂2 -->
-          <audio controls src="/pinball-board/assets/得分音樂2.mp3" id="playMusic2" style="display:none;"></audio>
-
-          <!-- 拉桿撞擊聲 -->
-          <audio controls src="/pinball-board/assets/拉桿撞擊聲.mp3" id="barSound" style="display:none;"></audio>
-
-          <!-- 遊戲結束四個字 -->
-          <audio controls src="/pinball-board/assets/遊戲結束四個字.mp3" id="finishGameSound" style="display:none;"></audio>
-
-          <!-- 像乎準喔 -->
-          <audio controls src="/pinball-board/assets/像乎準喔.mp3" id="focusOn" style="display:none;"></audio>
-
-          <!-- 加油加油 -->
-          <audio controls src="/pinball-board/assets/加油加油.mp3" id="cheerUp" style="display:none;"></audio>
-
-          <!-- 加油喔 -->
-          <audio controls src="/pinball-board/assets/加油喔-台語.mp3" id="cheerUpTai" style="display:none;"></audio>
-
-          <!-- price ring sounds -->
-          <audio controls src="/pinball-board/assets/priceRingSound.mp3" id="priceRingSound"
-            style="display:none;"></audio>
-
-          <!-- 90 points price sound -->
-          <audio controls src="/pinball-board/assets/90pointSound.mp3" id="nityPointSound"
-            style="display:none;"></audio>
-
-          <!-- 計算開機次數 -->
-          <div class="" id="bootNumber"></div>
-          <!-- 計算開機次數 ends-->
-          <!-- audio end -->
-
-          <!-- result_detail -->
-          <input type="text" class="form_control" id="result_detail" style="display:none;">
-
-          <!-- show internet speed -->
-          <p id="progress" style="display:none;">JavaScript is turned off, or your browser is realllllly slow</p>
-
-          <!-- quality input -->
-          <input type="text" id="quality" value="30" style="display:none;">
         </div>
-        <!-- drag -->
 
+        <!-- 關機鍵 -->
+        <div class="shutdown-module" style="display:none;">
+          <p>關機</p>
+          <div class="shutdown-button"><a href="javascript:void(0)" id="pressShutdown"><span
+                style="font-size:2rem; color: rgba(0, 129, 215, 0.747)"><i class="fa-solid fa-power-off"></i></span></a>
+          </div>
+        </div>
+
+
+
+
+        <!-- 計分API -->
+
+        <!-- audio -->
+        <!-- 開機音樂 -->
+        <audio controls src="/pinball-board/assets/鼠來鼠趣開機音樂1-完整一小段.mp3" id="bootMusic1_1" style="display:none;"></audio>
+        <audio controls src="/pinball-board/assets/鼠來鼠趣開機音樂1-完整一小段(不含前面).mp3" id="bootMusic1_2"
+          style="display:none;"></audio>
+        <audio controls src="/pinball-board/assets/鼠來鼠趣開機音樂1-完整一小段(不含前面).mp3" id="bootMusic1_3"
+          style="display:none;"></audio>
+
+        <audio controls src="/pinball-board/assets/鼠來鼠趣開機音樂2-完整一小段.mp3" id="bootMusic2_1" style="display:none;"></audio>
+        <audio controls src="/pinball-board/assets/鼠來鼠趣開機音樂2-完整一小段(不含前面).mp3" id="bootMusic2_2"
+          style="display:none;"></audio>
+        <audio controls src="/pinball-board/assets/鼠來鼠趣開機音樂2-完整一小段(不含前面).mp3" id="bootMusic2_3"
+          style="display:none;"></audio>
+
+        <audio controls src="/pinball-board/assets/鼠來鼠趣開機音樂3-完整一小段.mp3" id="bootMusic3_1" style="display:none;"></audio>
+        <audio controls src="/pinball-board/assets/鼠來鼠趣開機音樂3-完整一小段(不含前面).mp3" id="bootMusic3_2"
+          style="display:none;"></audio>
+        <audio controls src="/pinball-board/assets/鼠來鼠趣開機音樂3-完整一小段(不含前面).mp3" id="bootMusic3_3"
+          style="display:none;"></audio>
+
+        <!-- 投幣音樂 -->
+        <audio controls src="/pinball-board/assets/投幣音樂.mp3" id="cointMusic" style="display:none;"></audio>
+
+        <!-- 開始音樂 -->
+        <audio controls src="/pinball-board/assets/開始音樂.mp3" id="startMusic" style="display:none;"></audio>
+
+        <!-- 得分音樂1 -->
+        <audio controls src="/pinball-board/assets/得分音樂1.mp3" id="playMusic1" style="display:none;"></audio>
+
+        <!-- 得分音樂2 -->
+        <audio controls src="/pinball-board/assets/得分音樂2.mp3" id="playMusic2" style="display:none;"></audio>
+
+        <!-- 拉桿撞擊聲 -->
+        <audio controls src="/pinball-board/assets/拉桿撞擊聲.mp3" id="barSound" style="display:none;"></audio>
+
+        <!-- 遊戲結束四個字 -->
+        <audio controls src="/pinball-board/assets/遊戲結束四個字.mp3" id="finishGameSound" style="display:none;"></audio>
+
+        <!-- 像乎準喔 -->
+        <audio controls src="/pinball-board/assets/像乎準喔.mp3" id="focusOn" style="display:none;"></audio>
+
+        <!-- 加油加油 -->
+        <audio controls src="/pinball-board/assets/加油加油.mp3" id="cheerUp" style="display:none;"></audio>
+
+        <!-- 加油喔 -->
+        <audio controls src="/pinball-board/assets/加油喔-台語.mp3" id="cheerUpTai" style="display:none;"></audio>
+
+        <!-- price ring sounds -->
+        <audio controls src="/pinball-board/assets/priceRingSound.mp3" id="priceRingSound"
+          style="display:none;"></audio>
+
+        <!-- 90 points price sound -->
+        <audio controls src="/pinball-board/assets/90pointSound.mp3" id="nityPointSound" style="display:none;"></audio>
+
+        <!-- 計算開機次數 -->
+        <div class="" id="bootNumber"></div>
+        <!-- 計算開機次數 ends-->
+        <!-- audio end -->
+
+        <!-- result_detail -->
+        <input type="text" class="form_control" id="result_detail" style="display:none;">
+
+        <!-- show internet speed -->
+        <p id="progress" style="display:none;">JavaScript is turned off, or your browser is realllllly slow</p>
+
+        <!-- quality input -->
+        <input type="text" id="quality" value="30" style="display:none;">
       </div>
-      <!-- scroller -->
+      <!-- drag -->
+
+    </div>
+    <!-- scroller -->
+
 
 
     </div>
@@ -443,9 +440,9 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.2.0/wNumb.min.js"
         integrity="sha512-igVQ7hyQVijOUlfg3OmcTZLwYJIBXU63xL9RC12xBHNpmGJAktDnzl9Iw0J4yrSaQtDxTTVlwhY730vphoVqJQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="../Player.js"></script>
-        <script src="../Decoder.js"></script>
-        <script src="../YUVCanvas.js"></script>
+      <script src="../Player.js"></script>
+      <script src="../Decoder.js"></script>
+      <script src="../YUVCanvas.js"></script>
       <script>
 
 
@@ -842,10 +839,10 @@
 
         //拉桿-手機震動       
         // 手機點擊時震動 400 毫秒 button_insert_coin擊發
-        buttonInsertCoin.addEventListener("click", function () {
-          navigator.vibrate(400);
-          barSound.play();
-        });
+        //buttonInsertCoin.addEventListener("click", function () {
+        //navigator.vibrate(400);
+        //barSound.play();
+        //});
 
 
 
@@ -924,11 +921,11 @@
         const sliderFormat = document.getElementById('slider-format');
 
         noUiSlider.create(sliderFormat, {
-          start: [0.3],  //start number
+          start: [0.1],  //start number
           step: 0.01,    //每次滑動間隔
           connect: 'lower',  //add to get a background color
           range: {
-            'min': [0.3],
+            'min': [0.1],
             'max': [1.5]
           },
           format: wNumb({
@@ -942,6 +939,11 @@
 
         sliderFormat.noUiSlider.on('update', function (values, handle) {
           inputFormat.value = values[handle];
+          if (inputFormat.value > 0.50) {
+            $('.noUi-connect').css("background-color", "#ff7707");
+          } else {
+            $('.noUi-connect').css("background-color", "#3FB8AF");
+          }
         });
 
         inputFormat.addEventListener('change', function () {
@@ -980,7 +982,371 @@
         //Every server know one of the client has pressed start.
 
         //Script to Actions
-        
+        let test_script = '### Example' + '\r' +
+          'INSERTCOIN 1' + '\r' +
+          'START' + '\r' +
+          'LOOP1:' + '\r' +
+          'PULL 2.0' + '\r' +
+          'STOP 0.5' + '\r' +
+          'SHOOT' + '\r' +
+          'STOP 10' + '\r' +
+          'IF BALL > 0 GOTO LOOP1 ELSE GOTO LOOP2' + '\r' +
+          'STOP 10' + '\r' +
+          'PULL 1.0' + '\r' +
+          'SHOOT' + '\r' +
+          'LOOP2:' + '\r' +
+          'STOP 1' + '\r' +
+          'SHOOT' + '\r' +
+          'STOP 10' + '\r' +
+          'SHOOT' + '\r';
+
+        $('#script_editor').val(test_script)
+
+        function sleep(ms) {
+          return new Promise((resolve) => {
+            setTimeout(resolve, ms);
+          });
+        }
+
+        function myRandomNumber(min, max) {
+          return (Math.floor(Math.random() * (max * 10 - min * 10 + 1)) + min * 10) / 10;
+        };
+
+        function parseCommandToken(tokens, index, execute, script_execution_counter, labels) {
+
+          if (tokens != null && tokens.length > index) {
+
+            if (tokens[index] === 'insertcoin') {
+
+              if (tokens.length > index + 1) coins = tokens[index + 1]
+              myLog("-> LINE " + script_execution_counter + " Command insertcoin" + " " + coins)
+              if (execute) {
+                insertCoin()
+                itimer = 0
+              }
+              return [true, 2, 0, 0]
+            }
+
+            if (tokens[index] === 'start') {
+              myLog("-> LINE " + script_execution_counter + " Command start")
+              if (execute) {
+                startGame()
+                itimer = 0
+              }
+              return [true, 1, 0, 0]
+            }
+
+            if (tokens[index] === 'pull') {
+              if (tokens.length > index + 1) sec = tokens[index + 1]
+              myLog("-> LINE " + script_execution_counter + " Command pull" + " " + sec)
+              if (execute) {
+                gameActionPull(sec)
+                itimer = 0
+                return [true, 2, 0, sec]
+              }
+              return [true, 2, 0, 0]
+            }
+
+
+            if (tokens[index] === 'randpull') {
+              if (tokens.length > index + 1) sec1 = tokens[index + 1]
+              if (tokens.length > index + 2) sec2 = tokens[index + 2]
+              myLog("-> LINE " + script_execution_counter + " Command randpull" + " " + sec1 + " " + sec2)
+              sec = myRandomNumber(sec1, sec2)
+              if (execute) {
+                gameActionPull(sec)
+                itimer = 0
+                return [true, 3, 0, sec]
+              }
+              return [true, 3, 0, 0]
+            }
+
+
+            if (tokens[index] === 'shoot') {
+              myLog("-> LINE " + script_execution_counter + " Command shoot")
+              if (execute) {
+                gameActionShoot()
+                itimer = 0
+              }
+              return [true, 1, 0, 0]
+            }
+
+
+            if (tokens[index] === 'stop') {
+              if (tokens.length > index + 1) sec = tokens[index + 1]
+              myLog("-> LINE " + script_execution_counter + " Command stop" + " " + sec)
+              if (execute) return [true, 2, 0, sec]
+              else return [true, 2, 0, 0]
+            }
+
+
+            if (tokens[index] === 'randstop') {
+              if (tokens.length > index + 2) {
+                sec1 = tokens[index + 1]
+                sec2 = tokens[index + 2]
+              }
+              myLog("-> LINE " + script_execution_counter + " Command randstop" + " " + sec1 + " " + sec2)
+              if (execute) {
+                sec = myRandomNumber(sec1, sec2)
+                itimer = 0
+                return [true, 3, 0, sec]
+              }
+              else return [true, 3, 0, 0]
+            }
+
+
+            if (tokens[index] === 'goto') {
+              if (tokens.length > index + 1) label = tokens[index + 1]
+              myLog("-> LINE " + script_execution_counter + " Command goto" + " " + label)
+              new_script_execution_counter = 0
+              if (execute) new_script_execution_counter = labels[label]
+              return [true, 2, new_script_execution_counter, 0]
+            }
+          }
+          return [false, 0, 0, 0]
+        }
+
+
+        function parseConditionToken(i, o, v, script_execution_counter) {
+
+          let value1 = 0
+          let value2 = 0
+          let operator = o
+          result = false
+          //console.log("parseConditionToken"+JSON.stringify(result_data))
+          if (i.indexOf('hole') > -1) {
+            myLog("-> LINE " + script_execution_counter + " Condition " + i + " " + o + " " + v)
+            value1 = i.replace('hole_', '')
+            detail = result_data.data.detail
+            detail_array = detail.split(';')
+            //console.log("value 1 = "+value1 +" "+JSON.stringify(detail_array))
+            found = false
+            for (item in detail_array) {
+              if (value1 === detail_array[item]) {
+                found = true
+                break
+              }
+            }
+            if (v === 'on') if (found) result = true
+            else if (v === 'off') if (!found) result = true
+            operator = '<>'
+          }
+          else if (i === 'ball') {
+            myLog("-> LINE " + script_execution_counter + " Condition " + i + " " + o + " " + v)
+            value1 = 5 - result_data.data.ball
+            value2 = parseInt(v)
+            if (value1 < 0) result = false
+            myLog("v1 = " + value1 + " v2 = " + value2)
+          }
+
+          else if (i === 'wball') {
+            myLog("-> LINE " + script_execution_counter + " Condition " + i + " " + o + " " + v)
+            value1 = result_data.data.ball_line
+            value2 = parseInt(v)
+            if (value1 < 0) result = false
+            myLog("v1 = " + value1 + " v2 = " + value2)
+          }
+
+
+          else if (i === 'score') {
+            myLog("-> LINE " + script_execution_counter + " Condition " + i + " " + o + " " + v)
+            value1 = result_data.data.score
+            value2 = parseInt(v)
+          }
+
+
+          else if (i === 'itimer') {
+            myLog("-> LINE " + script_execution_counter + " Condition " + i + " " + o + " " + v)
+            value1 = itimer
+            value2 = parseInt(v)
+          }
+
+
+
+
+          switch (operator) {
+            case '==':
+              if (value1 === value2) result = true
+              else result = false
+              break
+            case '!=':
+              if (value1 !== value2) result = true
+              else result = false
+              break
+            case '>':
+              if (value1 > value2) result = true
+              else result = false
+              break
+            case '>=':
+              if (value1 >= value2) result = true
+              else result = false
+              break
+            case '<':
+              if (value1 < value2) result = true
+              else result = false
+              break
+            case '<=':
+              if (value1 <= value2) result = true
+              else result = false
+              break
+
+          }
+          myLog("Condition Result = " + result)
+          return result
+        }
+
+
+
+        function action_script_runner_init(script_line) {
+          lines = script_line.split(/\r?\n/)
+          console.log(lines)
+          script_timer = 0
+          script_execution_counter = 0
+          script_line_count = lines.length
+          labels = {}
+          console.log('Script Start , Line Count = ' + script_line_count)
+          for (var i = 0; i < script_line_count; i++) {
+            line = lines[i]
+            line = line.trim()
+            line = line.toLowerCase()
+            if (line.indexOf(':') > -1) {
+              label = line.substring(0, line.indexOf(':'))
+              labels[label] = i
+              console.log("Label " + i + " " + label)
+            }
+          }
+          console.log("Labels :" + JSON.stringify(labels))
+          itimer = 0
+        }
+
+        function action_script_runner_run(script_execution_counter_running) {
+
+          if (script_execution_counter_running < script_line_count) {
+
+            script_timeout = SCRIPT_DEFAULT_TIMEOUT
+
+
+            line = lines[script_execution_counter_running];
+
+            line = line.trim()
+            line = line.toLowerCase()
+            script_execution_counter_goto = 0
+            if (line != '') {
+              tokens = line.split(' ')
+              condition_result = true
+              condition_and = false
+              condition_or = false
+              condition_else = false
+              for (var i = 0; i < tokens.length; i++) {
+                console.log('' + tokens[i] + ' ')
+                if (tokens[i].indexOf('#') == 0) {
+
+
+
+                  myLog("-> LINE " + script_execution_counter_running + " Comment")
+
+                  break
+                }
+
+
+                if (tokens[i].indexOf(':') > -1) {
+                  myLog("-> LINE " + script_execution_counter_running + " Label")
+                  break
+                }
+
+                result = parseCommandToken(tokens, i, condition_result || condition_else, script_execution_counter_running, labels)
+
+
+                if (result[0]) {
+                  i = i + result[1]
+                  if (result[2] != 0) script_execution_counter_goto = result[2]
+                  if (condition_result || condition_else) {
+                    script_timeout = result[3]
+                    break
+                  }
+
+                }
+
+                if (tokens[i] === 'if') {
+
+                  condition_result = false
+                  myLog("-> LINE " + script_execution_counter_running + " IF ")
+                  if (tokens.length > 4) {
+                    condition_result = parseConditionToken(tokens[i + 1], tokens[i + 2], tokens[i + 3], script_execution_counter_running)
+                  }
+                  i = 3
+                }
+
+
+                if (tokens[i] === 'else') {
+
+                  condition_else = true
+                  myLog("-> LINE " + script_execution_counter + " ELSE ")
+                }
+
+
+
+                if (tokens[i] === '&&') {
+                  myLog("-> LINE " + script_execution_counter_running + " && ")
+                  if (tokens.length > i + 3) {
+                    new_condition_result = parseConditionToken(tokens[i + 1], tokens[i + 2], tokens[i + 3], script_execution_counter_running)
+                    condition_result = condition_result && new_condition_result
+                  }
+                  i += 3
+                  condition_and = true
+                }
+
+
+                if (tokens[i] === '||') {
+                  myLog("-> LINE " + script_execution_counter_running + " || ")
+                  if (tokens.length > i + 3) {
+                    condition_result ||= parseConditionToken(tokens[i + 1], tokens[i + 2], tokens[i + 3], script_execution_counter_running)
+                  }
+                  i += 3
+                  condition_or = true
+                }
+
+                // Only one chain allowed for '&&' or '||'
+                if (condition_and && condition_or) break
+
+              }
+            }
+
+            if (script_execution_counter_goto == 0) {
+              next_script_execution_counter_running = script_execution_counter_running + 1
+            }
+            else {
+              next_script_execution_counter_running = script_execution_counter_goto
+            }
+            itimer = itimer + script_timeout
+
+            //await sleep(script_timeout*1000);
+            return next_script_execution_counter_running
+          }
+          myLog('>>>Script End')
+          return -1
+        }
+
+        async function runrun(x) {
+          y = action_script_runner_run(x)
+          await sleep(script_timeout * 1000)
+          return y
+        }
+
+
+        async function script_run_main(n) {
+          x = n
+          while (x < script_line_count) {
+            await runrun(x)
+            x = y
+            if (script_stop) {
+              script_execution_counter = x
+              break
+            }
+          }
+          if (x == script_line_count) myLog("<<< Script End >>>")
+        }
+
 
 
         //script test API
@@ -1039,7 +1405,7 @@
             });
           });
         }
-        executeScript(script1);
+        executeScript(script1); //add to avoid baby picture???
 
 
 
