@@ -8,6 +8,7 @@ import noUiSlider from 'nouislider';
 // import liveReload from 'vite-plugin-live-reload';
 
 function moveOutputPlugin() {
+  
   return {
     name: 'move-output',
     enforce: 'post',
@@ -29,13 +30,14 @@ export default defineConfig({
   base: '/pinball-board/',
   plugins: [
     ViteEjsPlugin(),
-    moveOutputPlugin(),
+    moveOutputPlugin(),  
   ],
   server: {
     // 啟動 server 時預設開啟的頁面
     open: 'pages/index.html',
   },
   build: {
+    //minify:false,
     rollupOptions: {
       input: Object.fromEntries(
         glob
@@ -48,4 +50,5 @@ export default defineConfig({
     },
     outDir: 'dist',
   },
+   
 });
