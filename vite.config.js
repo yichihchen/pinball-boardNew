@@ -4,7 +4,6 @@ import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { glob } from 'glob';
 import { defineConfig } from "vite";
-import wasm from "vite-plugin-wasm";
 
 
 
