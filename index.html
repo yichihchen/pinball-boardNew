@@ -11,10 +11,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.css" />
 
   <title>index</title>
-  <script type="module" crossorigin src="/pinball-boardnew/assets/index-f76bfed3.js"></script>
-  <link rel="stylesheet" href="/pinball-boardnew/assets/index-c4c4d9d9.css">
+  <script type="module" crossorigin src="/pinball-board/assets/index-5352dd8b.js"></script>
+  <link rel="stylesheet" href="/pinball-board/assets/index-7a954094.css">
 </head>
 
 <body>
@@ -23,6 +24,53 @@
         <div class="drag" id="drag">
           <!-- board -->
           <div class="board p-0 position-relative" id="board">
+
+            <!-- modal button -->
+            <button type="button" class="btn btn-primary enterscriptButton" data-bs-toggle="modal"
+              data-bs-target="#exampleModal" data-bs-whatever="@mdo">Enter Script</button>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Enter Script</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <form>
+                      <div class="mb-3">
+                        <p>Please upload the script</p>
+                        <button class="btn btn-primary" id="button_upload_script">Upload Script</button>
+                        <select class="form-control" id="script_file_select">
+                          <option value="/data/script/upload/example1.txt">example1.txt</option>
+                          <option value="/data/script/upload/example2.txt">example2.txt</option>
+                        </select>
+                        <div class="d-flex align-items-center">
+                          <!--scripttext  scriptsave -->
+                          <!-- <input type="text" class="form-control scripttext" id="recipient-name"><a
+                            href="javascript:void(0)" id="scriptadd"><i class="fa-solid fa-plus"></i></a> -->
+                          <textarea id="story" name="story" rows="5" cols="33"></textarea>
+                        </div>
+
+                        <!--scriptlist -->
+                        <div class="modal-footer">
+
+                          <button class="btn btn-primary" id="button_scripts">Scripts</button>
+
+                          <button class="btn btn-primary btn-small" id="button_script_run">Run</button>
+                          <button class="btn btn-primary btn-small" id="button_script_stop">Stop(自己玩)</button>
+                          <button class="btn btn-primary btn-small" id="button_script_step">Step</button>
+                          <button class="btn btn-primary btn-small" id="button_script_empty">Empty</button>
+                          <!-- stop the script content -->
+                          <button type="button" class="btn btn-secondary">Play yourself</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
 
             <!-- 上方閃光 -->
             <div class="bluelight" id="blueLight"></div>
@@ -122,39 +170,163 @@
           <!-- 娃娃機中間 -->
           <div class="row middle justify-content-center m-0 position-relative">
             <div class="middle-frame text-center p-0 ">
-              <img class="middle-img" src="http://61.222.52.130:60081/0/stream" />
+              <!-- <img class="middle-img" id="middleImg" src="http://61.222.52.130:60081/camera/0/stream" /> -->
+              <div id="viewer"><canvas width="400" height="480" style="background-color: rgb(13, 14, 27);"></canvas>
+              </div>
+              <img class="imgFalse" id="imgFalse" src="/pinball-board/assets/baby-ec42d771.jpg" style="display:none;" />
             </div>
             <!--拉桿 -->
-            <a href="javascript:void(0)" id="button_play_game" class="bar p-0">
-              <div class="barControl" id="barControl"><img src="/pinball-boardnew/assets/把手-長-4ba8f537.svg" alt="把手" id="barImgLong"><img
-                  src="/pinball-boardnew/assets/把手-短-447b12b9.svg" alt="短把手" id="barImgShort"></div>
-            </a>
-            <!-- 投幣按鈕 -->
-            <div class="coin">
-              <!-- 原本id為pressCoin -->
-              <div class="coin-button"><a href="javascript:void(0)" id="button_insert_coin"><span
-                    style="font-size:6vw; color: rgb(255, 213, 0)"><i class="fa-solid fa-coins"></i></span></a>
 
-              </div>
-
-            </div>
+            <!-- <a href="javascript:void(0)" id="" class="bar p-0">
+              <div class="barControl" id="barControl"><img src="../assets/images/把手-長.svg" alt="把手" id="barImgLong"><img
+                  src="../assets/images/把手-短.svg" alt="短把手" id="barImgShort"></div>
+            </a> -->
 
           </div>
 
           <!-- 娃娃機下半部 -->
           <div class="handle position-relative p-0">
             <!-- 開始鈕 -->
-            <div class="start">
+            <div class="start" id="button_start_game">
               <!--原id為pressStart -->
-              <div class="start-button"><a href="javascript:void(0)" id="button_start_game"><span style="font-size:8vw;"
-                    class="shinning"><i class="fa-solid fa-circle-dot"></i></span></a>
+              <div class="start-button"><a href="javascript:void(0)"><span style="font-size:8vw;" class="shinning"
+                    id="startButtonSvg"><i class="fa-solid fa-circle-dot"></i></span></a>
               </div>
-
             </div>
+
+            <!-- <div class="coin">
+                <div class="coin-button"><a href="javascript:void(0)" id="button_insert_coin"><span
+                      style="font-size:6vw; color: rgb(255, 119, 0)"><i class="fa-solid fa-coins"></i></span></a>
+                </div>
+              </div> -->
 
           </div>
           <!-- 娃娃機下半部 end-->
 
+          <!-- 娃娃機API按紐 -->
+          <div class="d-flex">
+            <!-- 投幣 -->
+            <div class="insertCoin" style="display:none">
+              <a href="javascript:void(0)" id="button_insert_coin"><span
+                  style="font-size:6vw; color: rgb(255, 119, 0)"><i class="fa-solid fa-coins"></i></span>投幣</a>
+            </div>
+            <!-- 進球 -->
+            <div class="ball-in">
+              <a href="javascript:void(0)" id="button_game_action_shortcut_1"><span
+                  style="font-size:6vw; color: rgb(255, 119, 0)"><i class="fa-solid fa-meteor"></i></span>進球</a>
+            </div>
+
+            <!-- 疊球 -->
+            <div class="ball-overlap">
+              <div class=""><a href="javascript:void(0)" id="button_game_action_shortcut_2"><span
+                    style="font-size:6vw; color: rgb(0, 57, 123)"><i class="fa-solid fa-record-vinyl"></i></span>疊球</a>
+              </div>
+            </div>
+
+            <!-- 擊發 -->
+            <div class="ball-fired" id="button_game_action_shoot">
+              <div class=""><a href="javascript:void(0)"><span style="font-size:6vw; color: rgb(0, 57, 123)"><i
+                      class="fa-solid fa-crosshairs"></i></span>擊發</a>
+              </div>
+            </div>
+            <!-- 拉桿 -->
+            <div class="ball-pull">
+              <div class="" id="button_game_action_pull"><a href="javascript:void(0)"><span
+                    style="font-size:6vw; color: rgb(0, 57, 123)"><i class="fa-solid fa-fire"></i></span>往後拉</a>
+              </div>
+            </div>
+
+
+            <!-- 輸入案件 -->
+            <div>
+              <input type="text" id="sec" value="0.5" style="width: 100px;">
+            </div>
+          </div>
+          <!-- 娃娃機API按紐 end-->
+
+          <!-- pull range button -->
+          <div class="pullRangeButton d-flex justify-content-between">
+            <a href="javascript:void(0)" id="button_game_action_pull04">
+              <div><span style="font-size:6vw; color: rgb(141, 141, 141)"><i
+                    class="fa-solid fa-tablet-button"></i></span>
+                <span>0.4</span>
+              </div>
+            </a>
+            <a href="javascript:void(0)" id="button_game_action_pull05" data-value="0.5">
+              <div><span style="font-size:6vw; color:  rgb(141, 141, 141)"><i
+                    class="fa-solid fa-tablet-button"></i></span>
+                <span>0.5</span>
+              </div>
+            </a>
+            <a href="javascript:void(0)" id="button_game_action_pull06" data-value="0.6">
+              <div><span style="font-size:6vw; color: rgb(141, 141, 141)"><i
+                    class="fa-solid fa-tablet-button"></i></span>
+                <span>0.6</span>
+              </div>
+            </a>
+            <a href="javascript:void(0)" id="button_game_action_pull07" data-value="0.7">
+              <div><span style="font-size:6vw; color: rgb(141, 141, 141)"><i
+                    class="fa-solid fa-tablet-button"></i></span><span>0.7</span>
+              </div>
+            </a>
+            <a href="javascript:void(0)" id="button_game_action_pull08" data-value="0.8">
+              <div><span style="font-size:6vw; color:  rgb(141, 141, 141)"><i
+                    class="fa-solid fa-tablet-button"></i></span><span>0.8</span>
+              </div>
+            </a>
+            <a href="javascript:void(0)" id="button_game_action_pull09" data-value="0.9">
+              <div><span style="font-size:6vw; color:  rgb(141, 141, 141)"><i
+                    class="fa-solid fa-tablet-button"></i></span><span>0.9</span>
+              </div>
+            </a>
+            <a href="javascript:void(0)" id="button_game_action_pull10" data-value="1">
+              <div><span style="font-size:6vw; color:  rgb(141, 141, 141)"><i
+                    class="fa-solid fa-tablet-button"></i></span><span>1.0</span>
+              </div>
+            </a>
+            <a href="javascript:void(0)" id="button_game_action_pull11" data-value="1.1">
+              <div><span style="font-size:6vw; color:  rgb(141, 141, 141)"><i
+                    class="fa-solid fa-tablet-button"></i></span><span>1.1</span>
+              </div>
+            </a>
+
+            <a href="javascript:void(0)" id="button_game_action_pull12">
+              <div><span style="font-size:6vw; color:  rgb(141, 141, 141)"><i
+                    class="fa-solid fa-tablet-button"></i></span><span>1.2</span>
+              </div>
+            </a>
+
+            <a href="javascript:void(0)" id="button_game_action_pull13">
+              <div><span style="font-size:6vw; color:  rgb(141, 141, 141)"><i
+                    class="fa-solid fa-tablet-button"></i></span><span>1.3</span>
+              </div>
+            </a>
+
+            <a href="javascript:void(0)" id="button_game_action_pull14">
+              <div><span style="font-size:6vw; color:  rgb(141, 141, 141)"><i
+                    class="fa-solid fa-tablet-button"></i></span><span>1.4</span>
+              </div>
+            </a>
+
+            <a href="javascript:void(0)" id="button_game_action_pull15">
+              <div><span style="font-size:6vw; color:  rgb(141, 141, 141)"><i
+                    class="fa-solid fa-tablet-button"></i></span><span>1.5</span>
+              </div>
+            </a>
+
+          </div>
+          <!-- pull range button end-->
+
+          <!-- 拉桿 -->
+          <div class="example mt-4" id="example">
+            <div class="" id="slider-format"></div>
+
+            <input title="Formatted number" id="input-format">
+          </div>
+
+
+
+          <div class="button-white"></div>
 
           <!-- 開機鈕 -->
           <div class="boot-module" style="display:none;">
@@ -174,48 +346,82 @@
             </div>
           </div>
 
+
+
+
           <!-- 計分API -->
 
           <!-- audio -->
           <!-- 開機音樂 -->
-          <audio controls src="../assets/audio/鼠來鼠趣開機音樂1-完整一小段.mp3" id="bootMusic1_1" style="display:none;"></audio>
-          <audio controls src="../assets/audio/鼠來鼠趣開機音樂1-完整一小段(不含前面).mp3" id="bootMusic1_2"
+          <audio controls src="/pinball-board/assets/鼠來鼠趣開機音樂1-完整一小段.mp3" id="bootMusic1_1"
             style="display:none;"></audio>
-          <audio controls src="../assets/audio/鼠來鼠趣開機音樂1-完整一小段(不含前面).mp3" id="bootMusic1_3"
+          <audio controls src="/pinball-board/assets/鼠來鼠趣開機音樂1-完整一小段(不含前面).mp3" id="bootMusic1_2"
             style="display:none;"></audio>
-
-
-          <audio controls src="../assets/audio/鼠來鼠趣開機音樂2-完整一小段.mp3" id="bootMusic2_1" style="display:none;"></audio>
-          <audio controls src="../assets/audio/鼠來鼠趣開機音樂2-完整一小段(不含前面).mp3" id="bootMusic2_2"
-            style="display:none;"></audio>
-          <audio controls src="../assets/audio/鼠來鼠趣開機音樂2-完整一小段(不含前面).mp3" id="bootMusic2_3"
+          <audio controls src="/pinball-board/assets/鼠來鼠趣開機音樂1-完整一小段(不含前面).mp3" id="bootMusic1_3"
             style="display:none;"></audio>
 
-          <audio controls src="../assets/audio/鼠來鼠趣開機音樂3-完整一小段.mp3" id="bootMusic3_1" style="display:none;"></audio>
-          <audio controls src="../assets/audio/鼠來鼠趣開機音樂3-完整一小段(不含前面).mp3" id="bootMusic3_2"
+          <audio controls src="/pinball-board/assets/鼠來鼠趣開機音樂2-完整一小段.mp3" id="bootMusic2_1"
             style="display:none;"></audio>
-          <audio controls src="../assets/audio/鼠來鼠趣開機音樂3-完整一小段(不含前面).mp3" id="bootMusic3_3"
+          <audio controls src="/pinball-board/assets/鼠來鼠趣開機音樂2-完整一小段(不含前面).mp3" id="bootMusic2_2"
+            style="display:none;"></audio>
+          <audio controls src="/pinball-board/assets/鼠來鼠趣開機音樂2-完整一小段(不含前面).mp3" id="bootMusic2_3"
+            style="display:none;"></audio>
+
+          <audio controls src="/pinball-board/assets/鼠來鼠趣開機音樂3-完整一小段.mp3" id="bootMusic3_1"
+            style="display:none;"></audio>
+          <audio controls src="/pinball-board/assets/鼠來鼠趣開機音樂3-完整一小段(不含前面).mp3" id="bootMusic3_2"
+            style="display:none;"></audio>
+          <audio controls src="/pinball-board/assets/鼠來鼠趣開機音樂3-完整一小段(不含前面).mp3" id="bootMusic3_3"
             style="display:none;"></audio>
 
           <!-- 投幣音樂 -->
-          <audio controls src="../assets/audio/投幣音樂.mp3" id="cointMusic" style="display:none;"></audio>
+          <audio controls src="/pinball-board/assets/投幣音樂.mp3" id="cointMusic" style="display:none;"></audio>
 
           <!-- 開始音樂 -->
-          <audio controls src="../assets/audio/開始音樂.mp3" id="startMusic" style="display:none;"></audio>
+          <audio controls src="/pinball-board/assets/開始音樂.mp3" id="startMusic" style="display:none;"></audio>
 
           <!-- 得分音樂1 -->
-          <audio controls src="../assets/audio/得分音樂1.mp3" id="playMusic1" style="display:none;"></audio>
+          <audio controls src="/pinball-board/assets/得分音樂1.mp3" id="playMusic1" style="display:none;"></audio>
 
           <!-- 得分音樂2 -->
-          <audio controls src="../assets/audio/得分音樂2.mp3" id="playMusic2" style="display:none;"></audio>
+          <audio controls src="/pinball-board/assets/得分音樂2.mp3" id="playMusic2" style="display:none;"></audio>
 
-          <!-- audio end -->
+          <!-- 拉桿撞擊聲 -->
+          <audio controls src="/pinball-board/assets/拉桿撞擊聲.mp3" id="barSound" style="display:none;"></audio>
+
+          <!-- 遊戲結束四個字 -->
+          <audio controls src="/pinball-board/assets/遊戲結束四個字.mp3" id="finishGameSound" style="display:none;"></audio>
+
+          <!-- 像乎準喔 -->
+          <audio controls src="/pinball-board/assets/像乎準喔.mp3" id="focusOn" style="display:none;"></audio>
+
+          <!-- 加油加油 -->
+          <audio controls src="/pinball-board/assets/加油加油.mp3" id="cheerUp" style="display:none;"></audio>
+
+          <!-- 加油喔 -->
+          <audio controls src="/pinball-board/assets/加油喔-台語.mp3" id="cheerUpTai" style="display:none;"></audio>
+
+          <!-- price ring sounds -->
+          <audio controls src="/pinball-board/assets/priceRingSound.mp3" id="priceRingSound"
+            style="display:none;"></audio>
+
+          <!-- 90 points price sound -->
+          <audio controls src="/pinball-board/assets/90pointSound.mp3" id="nityPointSound"
+            style="display:none;"></audio>
 
           <!-- 計算開機次數 -->
           <div class="" id="bootNumber"></div>
           <!-- 計算開機次數 ends-->
+          <!-- audio end -->
 
+          <!-- result_detail -->
+          <input type="text" class="form_control" id="result_detail" style="display:none;">
 
+          <!-- show internet speed -->
+          <p id="progress" style="display:none;">JavaScript is turned off, or your browser is realllllly slow</p>
+
+          <!-- quality input -->
+          <input type="text" id="quality" value="30" style="display:none;">
         </div>
         <!-- drag -->
 
@@ -231,6 +437,15 @@
     
       
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.js"
+        integrity="sha512-UOJe4paV6hYWBnS0c9GnIRH8PLm2nFK22uhfAvsTIqd3uwnWsVri1OPn5fJYdLtGY3wB11LGHJ4yPU1WFJeBYQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.2.0/wNumb.min.js"
+        integrity="sha512-igVQ7hyQVijOUlfg3OmcTZLwYJIBXU63xL9RC12xBHNpmGJAktDnzl9Iw0J4yrSaQtDxTTVlwhY730vphoVqJQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="../Player.js"></script>
+        <script src="../Decoder.js"></script>
+        <script src="../YUVCanvas.js"></script>
       <script>
 
 
@@ -251,19 +466,54 @@
         const bootMusic3_2 = document.getElementById('bootMusic3_2');
         const bootMusic3_3 = document.getElementById('bootMusic3_3');
 
+        //藍色閃爍
+        const blueLight = document.getElementById('blueLight');
+
+        //點擊開始遊戲，音樂和閃爍換成別種播放樣式
+        const buttonStartGame = document.getElementById('button_start_game');
+        const startButtonSvg = document.getElementById('startButtonSvg');
+        const startMusic = document.getElementById('startMusic');
+
         //遊戲機資訊變數
-        const buttonInsertCoin = document.getElementById('button_insert_coin');
-        // const coinAmount = document.getElementById('coinAmount');
+        const buttonInsertCoin = document.getElementById('button_insert_coin');  //擊發
         const ticket = document.getElementById('ticket');
         const cointMusic = document.getElementById('cointMusic');
-        // const result_ball = document.getElementById('result_ball');
         const result_ball = document.querySelector('input[name="result_ball"]');
-        // const result_score = document.getElementById('result_score');
         const result_score = document.querySelector('input[name="result_score"]');
+        let pointTimeTicket;
+        let pointAmountNotZero;  //當pointAmountNotZero還大於0的時候
+
+
+        //get price sound
+        const priceRingSound = document.getElementById('priceRingSound');
+        const nityPointSound = document.getElementById('nityPointSound');
 
         //打彈珠背景音樂
         const playMusic1 = document.getElementById('playMusic1');
         const playMusic2 = document.getElementById('playMusic2');
+
+        //拉桿撞擊聲
+        const barSound = document.getElementById('barSound');
+
+
+        //遊戲結束四個字
+        const finishGameSound = document.getElementById('finishGameSound');
+
+        //每顆球分數
+        const result_detail = document.getElementById('result_detail');
+        const detailValue = result_detail.value;
+
+
+
+
+        //press buttonInsertCoin to clean the pointTimeTicket
+        // buttonInsertCoin.addEventListener('click', pointTimeTicketNone);
+        // function pointTimeTicketNone() {
+        //   pointTimeTicket = '';
+        //   ticket.value = 0;
+
+        // };
+
 
 
 
@@ -280,12 +530,10 @@
               light.classList.add('pointLight-out1'); // 添加 pointLight-out1 class
             }, delay1);
 
-            // 設定 pointLight-out2 的延遲時間，延遲 5000 毫秒再執行
-
             const delay2 = 5000; // pointLight-out2延遲5000毫秒再執行
 
             setTimeout(() => {
-              light.classList.add('pointLight-out2'); // 添加 pointLight-out2 class
+              light.classList.add('pointLight-out2');
             }, delay2);
           });
         }
@@ -293,30 +541,27 @@
         lightStartFlash();
 
 
-
-
         //當偵測到分數不等於0時，執行firstGetpoint，而且只執行一次
         // 在頁面載入完成後直接觸發
 
-
+        //getResult()
         function handleResultScoreChange() {
-
           // 分數不是0也不是五的倍數
-          if (Number(result_ball.value) === 0 && Number(result_score.value) % 5 !== 0) {
 
+          if (Number(result_ball.value) === 0 && Number(result_score.value) % 5 !== 0 && Number(result_score.value) !== 0) {
             lights.forEach(function (item) {
               item.classList.remove('firstGetpoint', 'pointLight-out1', 'pointLight-out2', 'highlight', 'nothighlight');
               item.classList.add('nothighlight');
-
-            })
-
-          } else if (Number(result_ball.value) === 0 && Number(result_score.value) % 5 === 0) {
+            });
+            ticket.value = 0; //to visible ticket.value on the screen except for players
+          } else if (Number(result_ball.value) === 0 && Number(result_score.value) % 5 === 0 && Number(result_score.value) !== 0) {
 
             //抓data-ticket的值
             const getPointId = document.getElementById(`pointLight${(result_score.value)}`);
             const ticketValue = getPointId.getAttribute('data-ticket');  //彩票值
-            ticket.value = ticketValue;  //將彩票值放入彩票欄位內
 
+            ticket.value = ticketValue;  //ticketValue有彩票值喔，但僅限於這個函式內
+            pointTimeTicket = ticketValue; //將彩票數(ticketValue)傳出去全域
 
             setTimeout(function () {    //這裡加上清除所有動畫樣式
 
@@ -325,28 +570,22 @@
                 if (item.id !== `pointLight${(result_score.value)}`) {
                   item.classList.remove('firstGetpoint', 'pointLight-out1', 'pointLight-out2', 'highlight', 'nothighlight', 'startlight');
                   item.classList.add('nothighlight');
-
                 } else {
                   item.classList.remove('firstGetpoint', 'pointLight-out1', 'pointLight-out2', 'highlight', 'nothighlight', 'startlight');
                   item.classList.add('highlight');
-
                 }
               });
+            }, 1000);
 
-            }, 3000);
-          }
 
-          //點擊開始後彩票數歸零  這裡沒用??
-          buttonStartGame.addEventListener('click', function () {
-            setTimeout(function () {
-              ticket.value = 0;
-
-            }, 3000);  //等候三秒再執行，就不會受到result_score影響
+          };
+          //避免得分燈亮後，例如15分，按開始之後燈號沒重新跑          
+          lights.forEach(function (item) {
+            item.classList.remove('firstGetpoint', 'pointLight-out1', 'pointLight-out2', 'highlight', 'nothighlight', 'startlight');
+            item.classList.add('nothighlight');
           });
 
         }
-
-
 
         //按開機鈕自動播放
         const pressBoot = document.getElementById('pressBoot');
@@ -356,7 +595,6 @@
         pressBoot.addEventListener('click', function () {
           //倒數
           let countdown = 3;
-
           const countdownInterval = setInterval(function () {
             //將倒數加到球數的input內
             countdownElement.value = countdown;
@@ -365,12 +603,10 @@
             if (countdown < 0) {
               clearInterval(countdownInterval);
               countdownElement.value = ''; // 隱藏倒數元素
-
               playBootMusic();  //插入playBootMusic功能
 
             }
           }, 1000); // 每秒更新一次倒數
-
 
         })
 
@@ -431,48 +667,81 @@
 
 
 
-        //每投一次硬幣，局數+1
-        //設定不能連續在幾秒之內點選開始兩次 debounce
-        let coinCount = 0;
+        //每按投幣一次，局數+1
 
-        buttonInsertCoin.addEventListener('click', function () {
+        //   buttonInsertCoin.addEventListener('click', function () {
+        //   cointMusic.play();  //播放投幣音樂
+        //   // coinCount++;
+        //   // pointAmount.value = coinCount; //增加投幣次數
+        //   pointAmount.value++; //增加投幣次數
+        //   console.log(`投幣之後的遊戲局數${pointAmount.value}`);
+        // });
+
+        //投幣鍵刪除，每按開始局數+1 **和下面監聽整合
+        buttonStartGame.addEventListener('click', function () {
           cointMusic.play();  //播放投幣音樂
-
-          coinCount++;
-          pointAmount.value = coinCount; //增加投幣次數
-          console.log(`coinCount++ pointAmount.value${pointAmount.value}`);
-
-
-        })
+          // coinCount++;
+          // pointAmount.value = coinCount; //增加投幣次數
+          pointAmount.value++; //增加投幣次數
+          console.log(`投幣之後的遊戲局數${pointAmount.value}`);
+        });
 
         //result_ball每歸零一次，局數-1
+
         function setPointAmount() {
 
-          if (parseInt(result_ball.value) === 0 && pointAmount.value > 0) {
-            console.log(`偵測${result_score.value}`);
-            // pointAmount.value--;  //一直跟著ajax減一
-            coinCount--;
-            pointAmount.value = coinCount;  //不用pointAmount.value-- 是避免和上面的 pointAmount.value = coinCount;不同步
-            console.log(`setPointAmount()pointAmount.value${pointAmount.value}`);
-            return;   //退出函式
+          //歸零條件:球數為0，按開始按鍵之後，局數還有剩，遊戲結束音效播放完才歸零
+          if (Number(result_ball.value) === 0 && pointAmount.value > 0 && Number(result_ball.value) % 5 === 0) {
+            //和上面的coinCount記憶體空間不同
 
+            pointAmountNotZero = pointAmount.value;
+            //播放中獎音樂 & 暫停背景音樂
+            priceRingSound.play();
+            playMusic1.pause();
+            playMusic2.pause();
+            // pointAmount.value = pointAmount.value - coinCount;
+            pointAmount.value = 0;
+            console.log(`條件式內的遊戲局數${pointAmount.value}`);
+            //播放中獎音樂 & 暫停背景音樂            
+            finishGameSound.play();  //遊戲結束四個字播放
+            console.log("pointAmount歸零且播放遊戲結束");
+            // coinCount = 0; //put here is most suitable, because pointAmount.value is already been minusified
+            return;
+          } else if (Number(result_ball.value) === 0 && pointAmount.value > 0 && Number(result_ball.value) % 5 !== 0) {
+            // pointAmount.value = pointAmount.value - coinCount;
+            pointAmount.value = 0;
+            //沒有播放中獎音樂 & 暫停背景音樂
+            playMusic1.pause();
+            playMusic2.pause();
+            finishGameSound.play();
+            ticket.value = 0; //to avoid the next play show the ticket number last time
+            // coinCount = 0;
+            return;
           } else {
-            console.log("false抓不到");
-
-          }
-
-
+            console.log("pointAmount沒有歸零");
+          };
         }
 
 
-        //藍色閃爍
-        const blueLight = document.getElementById('blueLight');
+        function watchStart() {
+          //有分數就不要閃爍開始燈，沒分數再閃鑠開始燈
+          if (Number(result_ball.value) !== 0) {
+            startButtonSvg.classList.remove('shinning', 'notshinning');
+            startButtonSvg.classList.add('notshinning');
+          } else if (Number(result_ball.value) === 0) {
+            startButtonSvg.classList.remove('shinning', 'notshinning');
+            startButtonSvg.classList.add('shinning');
+          };
+        };
 
-        //點擊開始遊戲，音樂和閃爍換成別種播放樣式
-        const buttonStartGame = document.getElementById('button_start_game');
-        const startMusic = document.getElementById('startMusic');
 
         buttonStartGame.addEventListener('click', function () {
+
+          //點擊開始後彩票數歸零 & 按開始後將只有亮燈號分數的狀態取消
+          // setTimeout(function () {
+          //   ticket.value = 0;
+          // }, 2000);  //等候三秒再執行，就不會受到result_score影響
+
           // 暫停和歸零 開機音樂 的效果
           bootMusic1_1.pause();
           bootMusic1_2.pause();
@@ -486,24 +755,27 @@
 
           startMusic.play();   //播放開始音樂
 
-          //點擊開始後數據reset
-
-          //開始13秒後，自動播放打彈珠時的背景音樂1
+          //開始後，自動播放打彈珠時的背景音樂1
           startMusic.onended = function () {
-            setTimeout(function () {
-              playMusic1.play();
-            }, 13000);
+            startMusic.currentTime = 0;
+            playMusic1.play();
           };
 
-          //打彈珠時的背景音樂2
+          //背景音樂2
           playMusic1.onended = function () {
+            playMusic1.currentTime = 0;
+            playMusic2.play();
+          }
+          //連續播放背景音樂2
+          playMusic2.onended = function () {
+            playMusic2.currentTime = 0;
             playMusic2.play();
           }
 
-          // 點擊開始>閃爍燈號樣式
+          // 點擊開始:閃爍燈號樣式
           //先清除原有燈號樣式
           lights.forEach(function (item) {
-            item.classList.remove('firstGetpoint', 'pointLight-out1', 'pointLight-out2', 'highlight', 'startlight'); //加這一行，其他動畫不會繼續跑出來
+            item.classList.remove('firstGetpoint', 'pointLight-out1', 'pointLight-out2', 'highlight', 'startlight', 'nothighlight'); //加這一行，其他動畫不會繼續跑出來
             void item.offsetWidth;  //加上這一行強制重新整理，避免startlight沒移除
             item.classList.add('startlight');
           })
@@ -511,21 +783,26 @@
         })
 
 
-        //拉桿
-        // **但不知為何點兩下，才會有反應**        
-        const bar = document.getElementById('button_play_game');  //a標籤
-        const barImgLong = document.getElementById('barImgLong');
-        const barImgShort = document.getElementById('barImgShort');
+        //拉桿            
+        // const bar = document.getElementById('button_play_game');  //更改
 
-        bar.addEventListener('click', function () {
-          barImgLong.style.display = 'block';
-          setInterval(function () {
-            barImgLong.style.display = 'none';
-            barImgShort.style.display = 'block';
-          }, 600);
-          barImgShort.style.display = 'none';
+        // const barImgLong = document.getElementById('barImgLong');
+        // const barImgShort = document.getElementById('barImgShort');
 
-        })
+        // buttonInsertCoin.addEventListener('click', function () {
+
+        //   //拉桿縮放
+        //   barImgLong.style.display = 'block';
+        //   setInterval(function () {
+        //     barImgLong.style.display = 'none';
+        //     barImgShort.style.display = 'block';
+        //   }, 600);
+        //   barImgShort.style.display = 'none';
+
+        //   //撥放拉桿聲音
+        //   barSound.play();
+
+        // })
 
 
 
@@ -563,20 +840,214 @@
         })
 
 
-        //拉桿-手機震動
-        // 檢查是否支援 Vibration API
-        // 手機點擊時震動 400 毫秒
-        bar.addEventListener("click", function () {
+        //拉桿-手機震動       
+        // 手機點擊時震動 400 毫秒 button_insert_coin擊發
+        buttonInsertCoin.addEventListener("click", function () {
           navigator.vibrate(400);
+          barSound.play();
         });
 
 
 
+        //download the image to detect the internet speed
+        //JUST AN EXAMPLE, PLEASE USE YOUR OWN PICTURE!
+        // let speedMbps;
 
-        //串接ajax功能
-        const BIZLUTION_RESTFUL_API_URL = "http://61.222.52.130:60050/"
+        // function downloadImage() {
+        //   const imageAddr = "https://upload.wikimedia.org/wikipedia/commons/a/a6/Brandenburger_Tor_abends.jpg";
+        //   const downloadSize = 2707459; // this must match with the image above
+        //   // 全局變量，將用於存儲 speedMbps 的值
+        //   function ShowProgressMessage(msg) {
+        //     if (console) {
+        //       if (typeof msg == "string") {
+        //         console.log(msg);
+        //       } else {
+        //         for (let i = 0; i < msg.length; i++) {
+        //           console.log(msg[i]);
+        //         }
+        //       }
+        //     }
+
+        //     const oProgress = document.getElementById("progress");
+        //     if (oProgress) {
+        //       let actualHTML = (typeof msg == "string") ? msg : msg.join("<br />");
+        //       oProgress.innerHTML = actualHTML;
+        //     }
+        //   }
+
+        //   function InitiateSpeedDetection() {
+        //     ShowProgressMessage("Loading the image, please wait...");
+        //     window.setTimeout(MeasureConnectionSpeed, 1);
+        //   };
+
+        //   if (window.addEventListener) {
+        //     window.addEventListener('load', InitiateSpeedDetection, false);
+        //   } else if (window.attachEvent) {
+        //     window.attachEvent('onload', InitiateSpeedDetection);
+        //   }
+
+        //   function MeasureConnectionSpeed() {
+        //     let startTime, endTime;
+        //     let download = new Image();
+        //     download.onload = function () {
+        //       endTime = (new Date()).getTime();
+        //       showResults();
+        //     }
+
+        //     download.onerror = function (err, msg) {
+        //       ShowProgressMessage("Invalid image, or error downloading");
+        //     }
+
+        //     startTime = (new Date()).getTime();
+        //     let cacheBuster = "?nnn=" + startTime;
+        //     download.src = imageAddr + cacheBuster;
+
+        //     function showResults() {
+        //       let duration = (endTime - startTime) / 1000;
+        //       let bitsLoaded = downloadSize * 8;
+        //       let speedBps = (bitsLoaded / duration).toFixed(2);
+        //       let speedKbps = (speedBps / 1024).toFixed(2);
+        //       speedMbps = (speedKbps / 1024).toFixed(2);  //global to get the speedMbps 
+        //       ShowProgressMessage([
+        //         "Your connection speed is:",
+        //         speedBps + " bps",
+        //         speedKbps + " kbps",
+        //         speedMbps + " Mbps"
+        //       ]);
+
+        //     }
+        //   }
+
+        // };
+
+        //noUiSlider package
+        const sliderFormat = document.getElementById('slider-format');
+
+        noUiSlider.create(sliderFormat, {
+          start: [0.3],  //start number
+          step: 0.01,    //每次滑動間隔
+          connect: 'lower',  //add to get a background color
+          range: {
+            'min': [0.3],
+            'max': [1.5]
+          },
+          format: wNumb({
+            decimals: 2,   //slide number
+            // thousand: '.',
+            suffix: ''  //to add a unit or word behind the words
+          })
+        });
+
+        let inputFormat = document.getElementById('input-format');
+
+        sliderFormat.noUiSlider.on('update', function (values, handle) {
+          inputFormat.value = values[handle];
+        });
+
+        inputFormat.addEventListener('change', function () {
+          sliderFormat.noUiSlider.set(this.value);
+        });
+
+
+        //Voice to text
+        function speekToVoice() {
+          const numbersString = result_detail.value; //"2;3;6;11;17;"
+          const numbersArray = numbersString
+            .split(";")
+            .filter((num) => num !== "")
+            .map((num) => parseInt(num));
+          console.log(numbersArray); //[2, 3, 6, 11, 17]
+
+          //get the lastnumber
+          const lastNumber = numbersArray[numbersArray.length - 1];
+
+          const synth = window.speechSynthesis;
+
+          const utter = new SpeechSynthesisUtterance();
+          // utter.text = numbersArray.join(" ");
+          utter.text = lastNumber;
+
+          // define speak
+          function speak() {
+            //change utter to voice
+            synth.speak(utter);
+            console.log(`${result_detail.value}`);
+          }
+        };
+
+        result_detail.addEventListener("change", speekToVoice);  //here is very strange
+
+        //Every server know one of the client has pressed start.
+
+        //Script to Actions
+        
+
+
+        //script test API
+        function insertCointest() {
+          return new Promise((resolve, reject) => {
+            $.ajax({
+              url: BIZLUTION_RESTFUL_API_URL + 'insert_coin',
+              success: function (result) {
+                resolve(result);
+              },
+              error: function (error) {
+                reject(error);
+              }
+            });
+          });
+        }
+
+        function startGametest() {
+          return new Promise((resolve, reject) => {
+            $.ajax({
+              url: BIZLUTION_RESTFUL_API_URL + 'start_game',
+              success: function (result) {
+                resolve(result);
+              },
+              error: function (error) {
+                reject(error);
+              }
+            });
+          });
+        }
+
+        function gameActionPull20test() {
+          return new Promise((resolve, reject) => {
+            $.ajax({
+              url: BIZLUTION_RESTFUL_API_URL + 'game_action_pull?sec=' + 2.0,
+              success: function (result) {
+                resolve(result);
+              },
+              error: function (error) {
+                reject(error);
+              }
+            })
+          })
+        }
+
+        function gameActionShoottest() {
+          return new Promise((resolve, reject) => {
+            $.ajax({
+              url: BIZLUTION_RESTFUL_API_URL + 'game_action_shoot',
+              success: function (result) {
+                resolve(result);
+              },
+              error: function (error) {
+                reject(error);
+              }
+            });
+          });
+        }
+        executeScript(script1);
+
+
+
+        //ajax
+        const BIZLUTION_RESTFUL_API_URL = "http://61.222.52.130:60081/pinball/"
         $(document).ready(function () {
 
+          //擊發歸零
           function insertCoin() {
             $.ajax({
               url: BIZLUTION_RESTFUL_API_URL + 'insert_coin',
@@ -602,9 +1073,12 @@
             })
           }
 
-          function playGame() {
+
+          //拉桿 id="sec"
+          function gameActionPull() {
+            let sec = $("#sec").val()
             $.ajax({
-              url: BIZLUTION_RESTFUL_API_URL + 'play_game',
+              url: BIZLUTION_RESTFUL_API_URL + 'game_action_pull?sec=' + sec,
               async: false,
               error: function (result) {
               },
@@ -614,19 +1088,426 @@
             })
           }
 
+          //add myself pull range
+          function gameActionPull04() {
+            setTimeout(function () {
+              $.ajax({
+                url: BIZLUTION_RESTFUL_API_URL + 'game_action_pull?sec=0.4',
+                async: false,
+                error: function (result) {
+                },
+                success: function (result) {
+                }
+              })
+            }, 500)
+            setTimeout(function () {
+              $.ajax({
+                url: BIZLUTION_RESTFUL_API_URL + 'game_action_shoot',
+                async: false,
+                error: function (result) {
+                },
+                success: function (result) {
+                }
+              })
+            }, 1000);
+          }
+
+
+
+          function gameActionPull05() {
+            setTimeout(function () {
+              $.ajax({
+                url: BIZLUTION_RESTFUL_API_URL + 'game_action_pull?sec=0.5',
+                async: false,
+                error: function (result) {
+                },
+                success: function (result) {
+                }
+              })
+            }, 500)
+            setTimeout(function () {
+              $.ajax({
+                url: BIZLUTION_RESTFUL_API_URL + 'game_action_shoot',
+                async: false,
+                error: function (result) {
+                },
+                success: function (result) {
+                }
+              })
+            }, 1100);
+          }
+
+          function gameActionPull06() {
+            setTimeout(function () {
+              $.ajax({
+                url: BIZLUTION_RESTFUL_API_URL + 'game_action_pull?sec=0.6',
+                async: false,
+                error: function (result) {
+                },
+                success: function (result) {
+                }
+              })
+            }, 500)
+            setTimeout(function () {
+              $.ajax({
+                url: BIZLUTION_RESTFUL_API_URL + 'game_action_shoot',
+                async: false,
+                error: function (result) {
+                },
+                success: function (result) {
+                }
+              })
+            }, 1200);
+          }
+
+          function gameActionPull07() {
+            setTimeout(function () {
+              $.ajax({
+                url: BIZLUTION_RESTFUL_API_URL + 'game_action_pull?sec=0.7',
+                async: false,
+                error: function (result) {
+                },
+                success: function (result) {
+                }
+              })
+            }, 500)
+            setTimeout(function () {
+              $.ajax({
+                url: BIZLUTION_RESTFUL_API_URL + 'game_action_shoot',
+                async: false,
+                error: function (result) {
+                },
+                success: function (result) {
+                }
+              })
+            }, 1300);
+          }
+
+          function gameActionPull08() {
+            setTimeout(function () {
+              $.ajax({
+                url: BIZLUTION_RESTFUL_API_URL + 'game_action_pull?sec=0.8',
+                async: false,
+                error: function (result) {
+                },
+                success: function (result) {
+                }
+              })
+            }, 500)
+            setTimeout(function () {
+              $.ajax({
+                url: BIZLUTION_RESTFUL_API_URL + 'game_action_shoot',
+                async: false,
+                error: function (result) {
+                },
+                success: function (result) {
+                }
+              })
+            }, 1400);
+          }
+
+          function gameActionPull09() {
+            setTimeout(function () {
+              $.ajax({
+                url: BIZLUTION_RESTFUL_API_URL + 'game_action_pull?sec=0.9',
+                async: false,
+                error: function (result) {
+                },
+                success: function (result) {
+                }
+              })
+            }, 500)
+            setTimeout(function () {
+              $.ajax({
+                url: BIZLUTION_RESTFUL_API_URL + 'game_action_shoot',
+                async: false,
+                error: function (result) {
+                },
+                success: function (result) {
+                }
+              })
+            }, 1500);
+          }
+
+
+          function gameActionPull10() {
+            setTimeout(function () {
+              $.ajax({
+                url: BIZLUTION_RESTFUL_API_URL + 'game_action_pull?sec=1',
+                async: false,
+                error: function (result) {
+                },
+                success: function (result) {
+                }
+              })
+            }, 500)
+            setTimeout(function () {
+              $.ajax({
+                url: BIZLUTION_RESTFUL_API_URL + 'game_action_shoot',
+                async: false,
+                error: function (result) {
+                },
+                success: function (result) {
+                }
+              })
+            }, 1600);
+          }
+
+          function gameActionPull11() {
+            setTimeout(function () {
+              $.ajax({
+                url: BIZLUTION_RESTFUL_API_URL + 'game_action_pull?sec=1.1',
+                async: false,
+                error: function (result) {
+                },
+                success: function (result) {
+                }
+              })
+            }, 500)
+            setTimeout(function () {
+              $.ajax({
+                url: BIZLUTION_RESTFUL_API_URL + 'game_action_shoot',
+                async: false,
+                error: function (result) {
+                },
+                success: function (result) {
+                }
+              })
+            }, 1700);
+          }
+
+          function gameActionPull12() {
+            setTimeout(function () {
+              $.ajax({
+                url: BIZLUTION_RESTFUL_API_URL + 'game_action_pull?sec=1.2',
+                async: false,
+                error: function (result) {
+                },
+                success: function (result) {
+                }
+              })
+            }, 500)
+            setTimeout(function () {
+              $.ajax({
+                url: BIZLUTION_RESTFUL_API_URL + 'game_action_shoot',
+                async: false,
+                error: function (result) {
+                },
+                success: function (result) {
+                }
+              })
+            }, 1800);
+          }
+
+
+          function gameActionPull13() {
+            setTimeout(function () {
+              $.ajax({
+                url: BIZLUTION_RESTFUL_API_URL + 'game_action_pull?sec=1.3',
+                async: false,
+                error: function (result) {
+                },
+                success: function (result) {
+                }
+              })
+            }, 500)
+            setTimeout(function () {
+              $.ajax({
+                url: BIZLUTION_RESTFUL_API_URL + 'game_action_shoot',
+                async: false,
+                error: function (result) {
+                },
+                success: function (result) {
+                }
+              })
+            }, 1900);
+          }
+
+          function gameActionPull14() {
+            setTimeout(function () {
+              $.ajax({
+                url: BIZLUTION_RESTFUL_API_URL + 'game_action_pull?sec=1.4',
+                async: false,
+                error: function (result) {
+                },
+                success: function (result) {
+                }
+              })
+            }, 500)
+            setTimeout(function () {
+              $.ajax({
+                url: BIZLUTION_RESTFUL_API_URL + 'game_action_shoot',
+                async: false,
+                error: function (result) {
+                },
+                success: function (result) {
+                }
+              })
+            }, 2000);
+          }
+
+          function gameActionPull15() {
+            setTimeout(function () {
+              $.ajax({
+                url: BIZLUTION_RESTFUL_API_URL + 'game_action_pull?sec=1.5',
+                async: false,
+                error: function (result) {
+                },
+                success: function (result) {
+                }
+              })
+            }, 500)
+            setTimeout(function () {
+              $.ajax({
+                url: BIZLUTION_RESTFUL_API_URL + 'game_action_shoot',
+                async: false,
+                error: function (result) {
+                },
+                success: function (result) {
+                }
+              })
+            }, 2100);
+          }
+
+
+
+          //input-format
+          function barMoveShoot() {
+            let noUiHandle = $(".noUi-handle").attr("aria-valuenow");
+            setTimeout(function () {
+              $.ajax({
+                url: BIZLUTION_RESTFUL_API_URL + 'game_action_pull?sec=' + noUiHandle,
+                async: false,
+                error: function (result) {
+                },
+                success: function (result) {
+
+                }
+              })
+            }, 300);
+
+            let delayValue = Number($(".noUi-handle").attr("aria-valuenow") * 1000) + 400;
+            setTimeout(function () {
+              $.ajax({
+                url: BIZLUTION_RESTFUL_API_URL + 'game_action_shoot',
+                async: false,
+                error: function (result) {
+                },
+                success: function (result) {
+                }
+              })
+            }, delayValue);
+          }
+
+
+          function gameActionShoot() {
+            $.ajax({
+              url: BIZLUTION_RESTFUL_API_URL + 'game_action_shoot',
+              async: false,
+              error: function (result) {
+              },
+              success: function (result) {
+
+              }
+            })
+          }
+
+
+          function gameActionShortcut(shortcut) {
+
+            $.ajax({
+              url: BIZLUTION_RESTFUL_API_URL + 'game_action_shortcut?shortcut=' + shortcut,
+              async: false,
+              error: function (result) {
+              },
+              success: function (result) {
+
+              }
+            })
+          }
+
+          //add setQuality
+          function setQuality() {
+            let q = $("#quality").val()
+            $.ajax({
+              url: BIZLUTION_RESTFUL_API_URL + 'set_quality?q=' + q,
+              async: false,
+              error: function (result) {
+              },
+              success: function (result) {
+
+              }
+            })
+          }
+
+          //internet speed detect API
+          // function speedToQuality() {
+          //   if (speedMbps >= 0 && speedMbps <= 100) {
+          //     $.ajax({
+          //       url: BIZLUTION_RESTFUL_API_URL + 'set_quality?q=' + 30,
+          //       async: false,
+          //       error: function (result) {
+          //       },
+          //       success: function (result) {
+          //         console.log(`speedMbps${speedMbps}`);
+          //       }
+          //     })
+          //   } else if (speedMbps > 100 && speedMbps <= 200) {
+          //     $.ajax({
+          //       url: BIZLUTION_RESTFUL_API_URL + 'set_quality?q=' + 50,
+          //       async: false,
+          //       error: function (result) {
+          //       },
+          //       success: function (result) {
+          //         console.log(`speedMbps${speedMbps}`);
+          //       }
+          //     })
+          //   } else if (speedMbps > 200) {
+          //     $.ajax({
+          //       url: BIZLUTION_RESTFUL_API_URL + 'set_quality?q=' + 40,
+          //       async: false,
+          //       error: function (result) {
+          //       },
+          //       success: function (result) {
+          //         console.log(`speedMbps${speedMbps}`);
+          //       }
+          //     })
+          //   };
+          // }
+
+
+
+          //upload script
+          function uploadScript() {
+            $.ajax({
+              url: BIZLUTION_RESTFUL_API_URL + 'upload_script',
+              async: false,
+              error: function (result) {
+              },
+              success: function (result) {
+
+              }
+            })
+          }
+
+
+
           function getResult() {
+
             $.ajax({
               dataType: "json",
               url: BIZLUTION_RESTFUL_API_URL + 'get_result',
-              async: false,
+              async: true,
               error: function (result) {
+                console.log("getResult false");
+                $('#middleImg').css('display', 'none');
+                $('#imgFalse').css('display', 'block');
               },
               success: function (result) {
 
                 $('#result_score').val(result.data.score)
                 $('#result_ball').val(result.data.ball)
                 $('#result_detail').val(result.data.detail)
-
 
                 //將球數內容改為:5-API的ball數量
                 const remainingBalls = 5 - parseInt($('#result_ball').val());
@@ -636,11 +1517,11 @@
                 //得分球亮燈功能
                 handleResultScoreChange();
 
-
-
               }
             })
+
           }
+
 
 
           //針對setPointAmount()功能製作一個ajax功能
@@ -664,218 +1545,206 @@
 
                 setPointAmount();
 
+                console.log("ajax內執行setPointAmount");
+
               }
             })
           }
 
-          //網址http://192.168.1.59:5000/insert_coin 自動跳出功能並執行
-          //依照此id可執行
+          function watchStartNow() {
+            $.ajax({
+              dataType: "json",
+              url: BIZLUTION_RESTFUL_API_URL + 'get_result',
+              async: false,
+              error: function (result) {
+              },
+              success: function (result) {
+
+                $('#result_score').val(result.data.score)
+                $('#result_ball').val(result.data.ball)
+                // $('#result_detail').val(result.data.detail)
+
+                //將球數內容改為:5-API的ball數量
+                const remainingBalls = 5 - parseInt($('#result_ball').val());
+                console.log(remainingBalls);
+                document.getElementById('result_ball').value = remainingBalls;
+
+                watchStart();   //開始按鈕shinning，放這裡只是為了要取數據
+
+              }
+            })
+          }
+
+
+
           $('#button_insert_coin').on('click', function (event) {
             insertCoin()
-
           })
 
           $('#button_start_game').on('click', function (event) {
-            startGame();
+            startGame()
+          })
+
+          //pull range
+          $('#button_game_action_pull').on('click', function (event) {
+            gameActionPull()
+          })
+
+          $('#button_game_action_pull04').on('click', function (event) {
+            gameActionPull04()
+          })
+
+          $('#button_game_action_pull05').on('click', function (event) {
+            gameActionPull05()
+          })
+
+          $('#button_game_action_pull06').on('click', function (event) {
+            gameActionPull06()
+          })
+
+          $('#button_game_action_pull07').on('click', function (event) {
+            gameActionPull07()
+          })
+
+          $('#button_game_action_pull08').on('click', function (event) {
+            gameActionPull08()
+          })
+
+          $('#button_game_action_pull09').on('click', function (event) {
+            gameActionPull09()
+          })
+
+          $('#button_game_action_pull10').on('click', function (event) {
+            gameActionPull10()
+          })
+
+          $('#button_game_action_pull11').on('click', function (event) {
+            gameActionPull11()
+          })
+
+          $('#button_game_action_pull12').on('click', function (event) {
+            gameActionPull12()
+          })
+
+          $('#button_game_action_shoot').on('click', function (event) {
+            gameActionShoot()
           })
 
 
-          $('#button_start_game').on('click', function (event) {
-            getPointAmount();
-
+          $('#button_game_action_shortcut_1').on('click', function (event) {
+            gameActionShortcut(1)
           })
 
-          $('#button_play_game').on('click', function (event) {
-            playGame()
+          $('#button_game_action_shortcut_2').on('click', function (event) {
+            gameActionShortcut(2)
           })
 
+          //when mouseup it will pull& shoot
+          $('#example').on('mouseup', function (event) {
+            barMoveShoot();
+          })
 
+          //set quality 
+          // $(document).ready(function () {
+          //   downloadImage();
+          //   setTimeout(speedToQuality, 3000);
+          //   //if don't use setTimeout, speedToQuality cannot execute 
+          // });
 
-          //這個功能可以改名
-          function foo() {
-            getResult()
-            setTimeout(foo, 1000)
+          //Open the other window
+          function openNewWindow(url) {
+            window.open(url, "_blank")
           }
-          foo()
+
+          //Open script website
+          $('#button_scripts').on('click', function (event) {
+            openNewWindow(BIZLUTION_RESTFUL_API_URL + 'scripts')
+          })
+
+          //Upload script
+          $('#button_upload_script').on('click', function (event) {
+            openNewWindow(BIZLUTION_RESTFUL_API_URL + 'upload_script')
+          })
+
+          let timerId;
+          let timerId2;
+          let timerId3;
+
+          // function foo() {
+          //   getResult();  //handleResultScoreChange & textToVoice
+          //   //later every two seconds excute the foo loop
+          //   timerId = setTimeout(foo, 2000);
+          //   console.log("執行foo");
+          // };
+          // foo(); //跟getResult有關系的: 亮分數燈 & 有彩票數
+
+          function foo() {
+            getResult();
+            setTimeout(foo, 1000);
+          }
+          foo();
 
 
+          function zoo() {
+            getPointAmount();   //setPointAmount
+            timerId3 = setTimeout(zoo, 1000);
+            console.log("執行zoo");
+          }  //跟getPointAmount有關係:遊戲結束音樂 & 按投幣後投幣鍵變成0
 
-
-        })
-
-
-        //滾動效果 drag全部都再viewport內確實不用滾
-
-        // let center_y = 0
-        const scroller = document.querySelector("#scroller");
-        const image = document.querySelector("#drag");
-        const board = document.querySelector('#board');
-
-        // document.addEventListener("DOMContentLoaded", () => {
-        //   console.log("Hello World!");
-        //   scroller.addEventListener("scroll", (event) => {
-        //     //output.textContent = `scrollTop: ${scroller.scrollTop}`;
-        //     //scroller.scroll(0,400)
-        //     console.log('scroller.scrollTop' + scroller.scrollTop);
-        //   });
-
-        //   startup();
-        // });
-        // window.onresize = function () { startup(); };
-        // function handleStart() {
-
-        //   console.log('handleStart');
-        // }
-        // function handleEnd() {
-
-        //   // $("#scroller").scrollTop(800);
-        //   scroller.scroll({
-        //     top: center_y,
-        //     left: 0,
-        //     behavior: "smooth",
-        //   });
-        // }
-        // function handleMove() {
-
-        //   console.log('handleMove');
-        // }
-        // function handleCancel() {
-        //   console.log('handleCancel');
-        //   scroller.scroll({
-        //     top: center_y,
-        //     left: 0,
-        //     behavior: "smooth",
-        //   });
-        // }
-
-
-        // const limit = Math.max(document.body.scrollHeight, document.body.offsetHeight,
-        //   document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight);
-        // function startup() {
-        //   //新增電腦監聽
-
-        //   image.addEventListener("touchstart", handleStart);
-        //   image.addEventListener("touchend", handleEnd);
-        //   image.addEventListener("touchcancel", handleCancel);
-        //   image.addEventListener("touchmove", handleMove);
-        //   // let realWidth = image.naturalWidth;
-        //   // let realHeight = image.naturalHeight;
-        //   let realHeight = board.offsetHeight;
-        //   let realWidth = board.offsetWidth;
-        //   console.log(image.offsetHeight + " " + realHeight);
-        //   console.log(image.offsetWidth + " " + realWidth);
-        //   console.log(document.documentElement.clientHeight)
-        //   console.log(document.documentElement.clientWidth)
-        //   console.log("Initialized.");
-
-        //   // imageHeight = realHeight * document.documentElement.clientWidth / realWidth
-        //   // center_y = (imageHeight - document.documentElement.clientHeight) / 2
-        //   center_y = realHeight * 0.6;
-        //   scroller.scroll({
-        //     top: center_y,
-        //     left: 0,
-        //     behavior: "instant",
-        //   });
-        // }
-
-
-        //throttle
-        function throttle(fn, delay = 2000) {
-          let timer = null;
-          return function (...args) {
-            if (timer) return;
-            timer = setTimeout(() => {
-              timer = null;
-            }, delay);
-            fn.apply(this, args);
+          function qoo() {
+            watchStartNow();
+            //500milliseconds can change shinning to notshinning faster
+            timerId2 = setTimeout(qoo, 1000);
+            console.log("執行qoo");
           };
-        }
 
-        const updateThrottleText = throttle(() => {
-          console.log("throttle");
-        }, 2000);
+          buttonStartGame.addEventListener("click", function () {
+            // deplay 9 seconds to avoid the mistake points in the beginning.
+            setTimeout(zoo, 9000);
+            //不小心連點兩次開始，會先跑出遊戲結束
+            qoo();
+            console.log("執行qoo");
+          });
+          //投幣和開始間隔拉長
+          //按開始鍵後不能投幣
+          //拉桿觸發foo比較複雜
+          function fooRemove() {
+            clearTimeout(timerId);
+            console.log("移除foo");
+          };
 
-        scroller.addEventListener("scroll", () => {
-          updateThrottleText();
+          function zooRemove() {
+            clearTimeout(timerId3);
+            console.log("移除zoo");
+          };
+
+
+          // buttonInsertCoin.addEventListener("click", zooRemove);
+          buttonInsertCoin.addEventListener("click", fooRemove);
         });
 
 
-        //電腦一開始畫面移到間
-        const scrollerClientHeight = parseInt(scroller.clientHeight * 0.8);
-        const scrollerScrollHeight = scroller.scrollHeight;
-
-        document.addEventListener("DOMContentLoaded", () => {
-          console.log("Hello World!");
-          console.log(`scroller.scrollHeight${scroller.scrollHeight}`); //整個畫面的高度
-          // scroller.scroll({
-          //   top: scrollerClientHeight,  //往下滑動
-          //   left: 0,
-          //   behavior: "instant",
-          // });
-          // checkCursorPC();
-          startup();
-        })
-
-        //改變瀏覽器寬度
-        window.onresize = function () {
-          // scroller.scroll({
-          //   top: scrollerClientHeight,  //往下滑動
-          //   left: 0,
-          //   behavior: "instant",
-          // });
-          // checkCursorPC();
-          startup();
-          console.log(`2scroller.scrollHeight${scroller.scrollHeight}`);
-        };
-
-        //當觸發scroll時，關閉掉下方的螢幕自動滑動
-
-        scroller.removeEventListener('scroll', checkCursorMobile);
-
-        //監聽滑鼠滑動後螢幕滑動位置(電腦)
-        // function checkCursorPC() {
-        //   scroller.addEventListener('mousemove', function (e) {
-        //     let x = e.pageX;
-        //     let y = e.pageY;
-
-        //     console.log(x, y);
-        //     console.log(e);
-        //     console.log(`scroller clientHeight ${scroller.clientHeight}`);
-        //     console.log(`scroller clientwidth ${scroller.clientWidth}`);
-        //     if (y <= scrollerClientHeight) {
-        //       console.log("小於scrollerClientHeight三分之一");
-        //       scroller.scrollTo({
-        //         top: -scrollerClientHeight,  //往下滑動
-        //         left: 0,
-        //         behavior: "smooth",
-        //       });
-        //     } else {
-        //       console.log("大於scrollerClientHeight三分之一");
-        //       scroller.scrollTo({
-        //         top: scrollerClientHeight,  //往上滑動
-        //         left: 0,
-        //         behavior: "smooth",
-        //       });
-        //     }
-        //   });
-        // };
-
-        //監聽觸碰螢幕滑動位置(手機)
-
-        function startup() {
-          scroller.addEventListener("touchcancel", checkCursorMobile);
+        // player
+        window.player = new Player({ useWorker: true, webgl: 'auto', size: { width: 400, height: 480 } })
+        var playerElement = document.getElementById('viewer')
+        playerElement.appendChild(window.player.canvas)
+        // Websocket
+        var wsUri = window.location.protocol.replace(/http/, 'ws') + '//' + window.location.hostname + ':9000'
+        var wsUri = 'ws://192.168.1.59/stream/0'
+        var wsUri = 'ws://61.222.52.130:60082/stream/0'
+        var ws = new WebSocket(wsUri)
+        ws.binaryType = 'arraybuffer'
+        ws.onopen = function (e) {
+          console.log('Client connected')
+          ws.onmessage = function (msg) {
+            // decode stream
+            window.player.decode(new Uint8Array(msg.data));
+          }
         }
-        function checkCursorMobile(e) {
-          console.log(e);
-          console.log(`mobile scroller clientHeight ${scroller.clientHeight}`);
-          console.log(`mobile scroller clientwidth ${scroller.clientWidth}`);
+        ws.onclose = function (e) {
+          console.log('Client disconnected')
+        }
 
-          scroller.scrollTo({
-            top: scrollerClientHeight,  //往下滑動
-            left: 0,
-            behavior: "smooth",
-          });
-        };
 
 
 
