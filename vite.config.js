@@ -3,7 +3,10 @@ import { ViteEjsPlugin } from 'vite-plugin-ejs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { glob } from 'glob';
-import noUiSlider from 'nouislider';
+import { defineConfig } from "vite";
+import wasm from "vite-plugin-wasm";
+
+
 
 // import liveReload from 'vite-plugin-live-reload';
 
@@ -30,7 +33,8 @@ export default defineConfig({
   base: '/pinball-board/',
   plugins: [
     ViteEjsPlugin(),
-    moveOutputPlugin(),  
+    moveOutputPlugin(),
+    wasm(),  
   ],
   server: {
     // 啟動 server 時預設開啟的頁面
@@ -52,3 +56,4 @@ export default defineConfig({
   },
    
 });
+
