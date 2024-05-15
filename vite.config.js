@@ -7,7 +7,6 @@ import wasm from "vite-plugin-wasm";
 import topLevelAwait from "vite-plugin-top-level-await";
 
 
-
 // import liveReload from 'vite-plugin-live-reload';
 
 function moveOutputPlugin() {

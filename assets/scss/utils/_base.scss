@@ -1,16 +1,17 @@
-html, body {
-    
+html,
+body {
+
     height: 100%;
     margin: 0;
     padding: 0;
-  }
-  
+}
+
 
 *,
 *::before,
 *::after {
     box-sizing: border-box;
-    
+
 }
 
 
@@ -24,18 +25,28 @@ a {
     text-decoration: none;
 }
 
-ol, ul{
+ol,
+ul {
     list-style: none;
     margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-    }
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
 
-@font-face{
-    font-family: "segment";
-    src:url(/assets/font/7segment.ttf);
-    src:url(/assets/font/7segment.ttf)format('ttf');
+// @font-face{
+//     font-family: "segment";
+//     src:url(/assets/font/7segment.ttf);
+//     src:url(/assets/font/7segment.ttf)format('ttf');
+// }
+
+@font-face {
+    font-family: 'MyWebFont';
+    src: url('WebFont.eot');
+    src: url('WebFont.eot?#iefix') format('embedded-opentype'),
+        url('WebFont.woff') format('woff'),
+        url('WebFont.ttf') format('truetype'),
+        url('WebFont.svg#webfont') format('svg');
 }
