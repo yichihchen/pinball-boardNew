@@ -32,8 +32,7 @@ export default defineConfig({
   base: '/pinball-board/',
   plugins: [
     ViteEjsPlugin(),
-    moveOutputPlugin(),
-    wasm(),  
+    moveOutputPlugin(),    
   ],
   server: {
     // 啟動 server 時預設開啟的頁面
